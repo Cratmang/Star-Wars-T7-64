@@ -71,3 +71,5 @@ InitTestScene*.unity
 
 
 # End of https://www.toptal.com/developers/gitignore/api/unity
+/Assets/Sprites/T7-64/T7-64Preview1.png
+/Assets/Sprites/T7-64/T7-64Preview1.png.meta
