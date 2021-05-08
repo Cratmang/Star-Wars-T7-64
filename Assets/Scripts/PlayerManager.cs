@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public T764 tee7;
+    
     public List<Transform> cameraPos;
+    /*List of Camera Positions:
+     * 0 = Command Room
+     * 1 = Atrium
+     * 2 = Mine Entrance
+     * 3 = Mine
+     * 4 = Hall B
+     * 5 = Hall A
+     * 6 = Hangar
+     * 7 = Vault 640
+     * 8 = Vault 641
+     * 9 = Vault 642
+     */
 
-    public bool mouseLocked;
     public int prevLocationIndex = 0; //This will start us in the Command room.
     public int nextLocationIndex = 0;
 
-    //What follows is recycled code from another project that I worked on a long time ago, then shelved indefinately.
+    //What follows is largely recycled code from another project that I worked on a long time ago, then shelved indefinately.
 
     public Transform[] transforms;
 
@@ -80,16 +93,16 @@ public class PlayerManager : MonoBehaviour
                         nextLocationIndex = passage.nextLocationIndex;
                         SwitchPosition(nextLocationIndex);
 
-                        //TO-DO: Give Previous location and Next Location to 
+                        //Give Previous location and Next Location to T7-64
+                        tee7.TravelTo(nextLocationIndex);
 
                         prevLocationIndex = nextLocationIndex;
+                        LockInput();
                     }
                 }
             }
         }
     }
-
-
 
     /*int CurrentLockedFrame(bool dia) {
         timer += Time.deltaTime;
