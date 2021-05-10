@@ -19,6 +19,9 @@ public class T764 : MonoBehaviour
     public bool traveling = false;
     float timer;
 
+    public GameObject laserPrefab;
+    public int damage;
+    public Vector3 laserSpawnOffset;
     
     // Start is called before the first frame update
     void Start()
@@ -159,4 +162,13 @@ public class T764 : MonoBehaviour
         waypointTo = standHere[newRoom];
         room = newRoom;
     }
+
+    //TO-DO: Add recharge time on laser attack.
+    public void FireLazor(Vector3 targetV, GameObject target) {
+        Vector3 start = transform.position + laserSpawnOffset;
+        Laser lazor = Instantiate(laserPrefab, start, transform.rotation).GetComponent<Laser>();
+        lazor.Initiate(start, targetV, target);
+
+    }
+
 }

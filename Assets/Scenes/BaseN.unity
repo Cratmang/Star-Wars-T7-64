@@ -5711,12 +5711,10 @@ MonoBehaviour:
   cursorNormal: {fileID: 2800000, guid: 5a888c676e9f8f442ac2071d96ab93b7, type: 3}
   cursorGoTo: {fileID: 2800000, guid: b0f155cde73a62946b15d2c79ab60b0e, type: 3}
   cursorInteract: {fileID: 0}
-  cursorShoot: {fileID: 0}
+  cursorShoot: {fileID: 2800000, guid: ccf448bf01733434d9d20fe0cd563335, type: 3}
   cursorMine: {fileID: 0}
   cursorCraft: {fileID: 0}
   cursorLocked: {fileID: 2800000, guid: 7988c5ac05055dd4bb481400287cef95, type: 3}
-  cursorMode: 0
-  hotSpot: {x: 0, y: 0}
   resourceCounters:
   - {fileID: 2024199711}
   - {fileID: 1306352531}
@@ -10336,6 +10334,10 @@ MonoBehaviour:
   waypointFro: {fileID: 6983540}
   travelTime: 0.5
   traveling: 0
+  laserPrefab: {fileID: 7944663641039822433, guid: 4c7082da95606584188714f678c66591,
+    type: 3}
+  damage: 1
+  laserSpawnOffset: {x: 0, y: 1, z: 0}
 --- !u!114 &1914773061
 MonoBehaviour:
   m_ObjectHideFlags: 0

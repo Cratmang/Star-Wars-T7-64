@@ -140,8 +140,8 @@ public class Enemy : MonoBehaviour {
             }
             else {//Crap! They've reached the end!
                 //gameManager.EnemyReachedGoal(bounty[level]);
-                //Destroy(gameObject);
-                Die();
+                Destroy(gameObject);
+                
             }
         }
 
@@ -161,6 +161,14 @@ public class Enemy : MonoBehaviour {
 
         
     }
+
+    public void TakeDamage(int ow) {
+        health -= ow;
+        if (health <= 0) {
+            Die();
+        }
+    }
+
 
     protected void Die() {
         int a = (int) Random.Range(minDrops, maxDrops+1);

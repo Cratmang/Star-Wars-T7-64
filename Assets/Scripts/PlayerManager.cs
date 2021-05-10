@@ -42,8 +42,9 @@ public class PlayerManager : MonoBehaviour
 
     //public GameManager gm;
     
-    public CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 hotSpot = Vector2.zero;
+    private CursorMode cursorMode = CursorMode.Auto;
+    private Vector2 hotSpot = Vector2.zero, targetHotspot = new Vector2(14, 14);
+
 
     public Text[] resourceCounters;
     private int[] resourceCount = new int[6];
@@ -83,14 +84,23 @@ public class PlayerManager : MonoBehaviour
                 }
 
                 Resource re = hit.transform.gameObject.GetComponent<Resource>();
-                if (re) { 
-                    //Gather Resources
-                    resourceCount[re.indexID]++;
-                    resourceCounters[re.indexID].text = resourceCount[re.indexID].ToString();
-                    Destroy(re.gameObject);
-                    //TO-DO: Add animation of resource being added to inventory.
+                if (re) {
+                    if (re.ripe) {
+                        //Gather Resources
+                        resourceCount[re.indexID]++;
+                        resourceCounters[re.indexID].text = resourceCount[re.indexID].ToString();
+                        Destroy(re.gameObject);
+                        //TO-DO: Add animation of resource being added to inventory.
+                    }
                 } 
                 
+                Enemy en = hit.transform.gameObject.GetComponent<Enemy>();
+                if (en) {
+                    Cursor.SetCursor(cursorShoot, targetHotspot, cursorMode);
+                    f = true;
+
+                }
+
                 if (!f) {             
                     //TO DO - Interactable object, enemy, etc. 
                     Cursor.SetCursor(cursorNormal, hotSpot, cursorMode);
@@ -103,7 +113,6 @@ public class PlayerManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0)) {
                 if (Physics.Raycast(ray, out hit)) {
                     Door passage = hit.transform.gameObject.GetComponent<Door>();
-
                     if (passage) {
 
                         nextLocationIndex = passage.nextLocationIndex;
@@ -115,6 +124,12 @@ public class PlayerManager : MonoBehaviour
                         prevLocationIndex = nextLocationIndex;
                         LockInput();
                     }
+
+                    Enemy en = hit.transform.gameObject.GetComponent<Enemy>();
+                    if (en) {
+                        tee7.FireLazor(hit.point, hit.transform.gameObject);
+                    }
+
                 }
             }
         }
