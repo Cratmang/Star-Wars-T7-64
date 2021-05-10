@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -44,6 +45,7 @@ public class PlayerManager : MonoBehaviour
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
 
+    public Text[] resourceCounters;
     private int[] resourceCount = new int[6];
 
     float timer;
@@ -84,8 +86,8 @@ public class PlayerManager : MonoBehaviour
                 if (re) { 
                     //Gather Resources
                     resourceCount[re.indexID]++;
+                    resourceCounters[re.indexID].text = resourceCount[re.indexID].ToString();
                     Destroy(re.gameObject);
-                    
                     //TO-DO: Add animation of resource being added to inventory.
                 } 
                 
