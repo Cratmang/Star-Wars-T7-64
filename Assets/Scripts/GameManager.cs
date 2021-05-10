@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    //Spawns and manages enemies
+
+
     //Enemy Paths
     // Basically, the waypoints for every enemy path. These are meant to be mix-matched-stitched together to create a single path through the base.
     

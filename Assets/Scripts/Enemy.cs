@@ -6,12 +6,11 @@ public class Enemy : MonoBehaviour {
 
     protected SpriteRenderer spriteRenderer;
 
-    public bool safe;
+    public GameObject[] drops;
+    public int minDrops, maxDrops;
 
-    public int level;
     public float health;
     public float maxHealth;
-    public int[] bounty;
     protected GameManager gm;
     public List<Transform> waypoints;
     public List<int> safeWaypoints;
@@ -141,7 +140,8 @@ public class Enemy : MonoBehaviour {
             }
             else {//Crap! They've reached the end!
                 //gameManager.EnemyReachedGoal(bounty[level]);
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                Die();
             }
         }
 
@@ -161,6 +161,23 @@ public class Enemy : MonoBehaviour {
 
         
     }
+
+    protected void Die() {
+        int a = (int) Random.Range(minDrops, maxDrops+1);
+        Vector3 lootSpawn = transform.position + new Vector3(0, 1, 0);
+
+        for (int b = 0; b < a; b++) {
+            int d = (int)Random.Range(0, drops.Length);
+            GameObject loot = Instantiate(drops[d], lootSpawn, transform.rotation);
+            float xForce = Random.Range(-2.5F, 2.5F);
+            float yForce = Random.Range( 0.1F, 5.0F);
+            float zForce = Random.Range(-2.5F, 2.5F);
+            loot.GetComponent<Rigidbody>().velocity = (new Vector3(xForce, yForce, zForce));
+        }
+
+        Destroy(gameObject);
+    }
+
 
     protected void OnTriggerEnter2D(Collider2D other)
     {

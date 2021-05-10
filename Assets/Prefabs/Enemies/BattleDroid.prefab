@@ -96,11 +96,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74326715a5ec0fc469dc83ad0b337e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  safe: 0
-  level: 0
+  drops:
+  - {fileID: 6067783209499355784, guid: f734cd6ba1cba4e46a1c84447dc788a4, type: 3}
+  - {fileID: 6067783209499355784, guid: f734cd6ba1cba4e46a1c84447dc788a4, type: 3}
+  - {fileID: 6067783209499355784, guid: f734cd6ba1cba4e46a1c84447dc788a4, type: 3}
+  - {fileID: 6067783209499355784, guid: f734cd6ba1cba4e46a1c84447dc788a4, type: 3}
+  - {fileID: 4209526203279810589, guid: ef477702183cf764fb78e133cd89deee, type: 3}
+  - {fileID: 4760923593130850965, guid: f1df9cb00be425f41a0d21b2ca514fb5, type: 3}
+  - {fileID: 4760923593130850965, guid: f1df9cb00be425f41a0d21b2ca514fb5, type: 3}
+  - {fileID: 4760923593130850965, guid: f1df9cb00be425f41a0d21b2ca514fb5, type: 3}
+  minDrops: 1
+  maxDrops: 3
   health: 2
   maxHealth: 2
-  bounty: 
   waypoints: []
   safeWaypoints: 
   lastWaypointSwitchTime: 0

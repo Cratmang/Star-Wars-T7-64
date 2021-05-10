@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    //Handles Player movement and UI.
+
     public T764 tee7;
     
     public List<Transform> cameraPos;
@@ -42,6 +44,8 @@ public class PlayerManager : MonoBehaviour
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
 
+    private int[] resourceCount = new int[6];
+
     float timer;
     public float frameTime;
 
@@ -68,18 +72,28 @@ public class PlayerManager : MonoBehaviour
 
                
             if (Physics.Raycast(ray, out hit)) {
+                bool f = false;
                 Door passage = hit.transform.gameObject.GetComponent<Door>();
-
                 if (passage) {
-                    //Change Cursor
                     Cursor.SetCursor(cursorGoTo, hotSpot, cursorMode);
-                          
+                    f = true;
 
-                } else {
-                                    
+                }
+
+                Resource re = hit.transform.gameObject.GetComponent<Resource>();
+                if (re) { 
+                    //Gather Resources
+                    resourceCount[re.indexID]++;
+                    Destroy(re.gameObject);
+                    
+                    //TO-DO: Add animation of resource being added to inventory.
+                } 
+                
+                if (!f) {             
                     //TO DO - Interactable object, enemy, etc. 
                     Cursor.SetCursor(cursorNormal, hotSpot, cursorMode);
                 }
+
             } else {
                 Cursor.SetCursor(cursorNormal, hotSpot, cursorMode);
             }
@@ -103,6 +117,8 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
+
+
 
     /*int CurrentLockedFrame(bool dia) {
         timer += Time.deltaTime;
