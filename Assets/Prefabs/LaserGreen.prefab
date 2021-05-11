@@ -275,3 +275,9 @@ MonoBehaviour:
   damage: 1
   friendly: 1
   speed: 10
+  laserColour:
+  - {fileID: -9158461699317646364, guid: 40f514e717f06f64587a11e2f52f66e5, type: 3}
+  - {fileID: 568878817884001253, guid: 40f514e717f06f64587a11e2f52f66e5, type: 3}
+  - {fileID: 9107523837278136210, guid: 40f514e717f06f64587a11e2f52f66e5, type: 3}
+  sr1: {fileID: 4359357083484882310}
+  sr2: {fileID: 1031414782041498555}

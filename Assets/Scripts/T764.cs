@@ -167,7 +167,7 @@ public class T764 : MonoBehaviour
     public void FireLazor(Vector3 targetV, GameObject target) {
         Vector3 start = transform.position + laserSpawnOffset;
         Laser lazor = Instantiate(laserPrefab, start, transform.rotation).GetComponent<Laser>();
-        lazor.Initiate(start, targetV, target);
+        lazor.Initiate(start, targetV, target, damage, true);
 
     }
 

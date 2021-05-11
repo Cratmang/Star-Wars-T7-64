@@ -114,11 +114,12 @@ MonoBehaviour:
   lastWaypointSwitchTime: 0
   speed: 1.5
   moving: 0
-  mounting: 0
-  boosted: 0
-  boostMultiplier: 0
-  cursed: 0
-  inked: 0
+  laserPrefab: {fileID: 7944663641039822433, guid: 4c7082da95606584188714f678c66591,
+    type: 3}
+  damage: 1
+  laserSpawnOffset: {x: 0, y: 1, z: 0}
+  attackRecharge: 3
+  targetOffset: {x: 0, y: 0.5, z: 0}
   totalTimeForPath: 0
   currentTimeOnPath: 0
 --- !u!65 &7211825461757308302

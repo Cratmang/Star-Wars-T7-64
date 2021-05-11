@@ -18,18 +18,14 @@ public class Enemy : MonoBehaviour {
     public float lastWaypointSwitchTime;
     public float speed = 1.0f;
     public bool moving;
-    public bool mounting;
 
-    public bool boosted;
-    public float boostMultiplier;
-
-    public bool cursed;
-    protected float curseTime;
-    protected float timeCursed;
-
-    public bool inked;
-    protected float inkTime;
-    protected float timeInked;
+    //Gun attack 
+    public GameObject laserPrefab;
+    public int damage;
+    public Vector3 laserSpawnOffset;
+    public float attackRecharge;
+    float attackTimer;
+    public Vector3 targetOffset;
 
     protected Vector3 startPosition;
     protected Vector3 endPosition;
@@ -47,15 +43,12 @@ public class Enemy : MonoBehaviour {
     public float distanceToGoal()
     {
         float distance = 0;
-        if (!mounting)
+        distance += Vector3.Distance(gameObject.transform.position, waypoints[currentWaypoint + 1].transform.position);
+        for (int i = currentWaypoint + 1; i < waypoints.Count - 1; i++)
         {
-            distance += Vector3.Distance(gameObject.transform.position, waypoints[currentWaypoint + 1].transform.position);
-            for (int i = currentWaypoint + 1; i < waypoints.Count - 1; i++)
-            {
-                Vector3 startPosition = waypoints[i].transform.position;
-                Vector3 endPosition = waypoints[i + 1].transform.position;
-                distance += Vector3.Distance(startPosition, endPosition);
-            }
+            Vector3 startPosition = waypoints[i].transform.position;
+            Vector3 endPosition = waypoints[i + 1].transform.position;
+            distance += Vector3.Distance(startPosition, endPosition);
         }
         return distance;
     }
@@ -101,14 +94,6 @@ public class Enemy : MonoBehaviour {
     void Update()
     {
         
-        /*float step;
-        if (inked)
-        {
-            step = speed / 2.0F;
-        } else
-        {
-            step = speed;
-        }*/
 
         //Movement
         startPosition = waypoints[currentWaypoint].transform.position;
@@ -119,6 +104,9 @@ public class Enemy : MonoBehaviour {
         currentTimeOnPath = Time.time - lastWaypointSwitchTime;
         transform.position = Vector3.Lerp(startPosition, endPosition, currentTimeOnPath / totalTimeForPath);
 
+        //TO-DO: Write rotation code to flip sprite when it is walking the opposite direction that it is facing.
+        /// put it in SpriteAlwaysFaceCamera.cs
+        /// 
         ///Vector3 vectorToTarget = waypoints[currentWaypoint + 1].transform.position - transform.position;
         //float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90;
         //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.forward), 0.1F);
@@ -158,7 +146,22 @@ public class Enemy : MonoBehaviour {
         //GameObject sprite = (GameObject) gameObject.transform.FindChild("Sprite").gameObject;
         //sprite.transform.rotation = Quaternion.AngleAxis(rotationAngle, Vector3.forward);
 
+        // Attack!
+        if (attackTimer < attackRecharge) {
+            attackTimer += Time.deltaTime;
+        }
+        if (attackTimer >= attackRecharge) {
+            attackTimer = 0;
 
+            //Get Target!
+            //Right now, the only target is the player.
+            //TO-DO: Add code to detect if player or turrets are in the same room.
+            GameObject target = GameObject.Find("T7-64");
+            Vector3 targetV = target.transform.position + targetOffset;
+            Vector3 start = transform.position + laserSpawnOffset;
+            Laser lazor = Instantiate(laserPrefab, start, transform.rotation).GetComponent<Laser>();
+            lazor.Initiate(start, targetV, target, damage, false);
+        }
         
     }
 
@@ -186,55 +189,4 @@ public class Enemy : MonoBehaviour {
         Destroy(gameObject);
     }
 
-
-    protected void OnTriggerEnter2D(Collider2D other)
-    {
-        /*if (other.tag.Equals("Projectile"))
-        {
-            Projectile projectile = other.gameObject.GetComponent<Projectile>();
-            float damageTaken = projectile.damage;
-            if (cursed)
-            {
-                damageTaken *= 2;
-            }
-            health -= damageTaken;
-            projectile.HitTarget();
-        }
-        if (other.tag.Equals("CurseProjectile"))
-        {
-            Projectile projectile = other.gameObject.GetComponent<Projectile>();
-            cursed = true;
-            timeCursed = Time.time;
-            curseTime = projectile.damage;
-            projectile.HitTarget();
-        }
-        if (other.tag.Equals("Bomb"))
-        {
-            Bomb bomb = other.gameObject.GetComponent<Bomb>();
-            /*int damageTaken = bomb.damage;
-            if (cursed)
-            {
-                damageTaken *= 2;
-            }
-            health -= damageTaken;*
-            bomb.Detonate();
-        }
-        if (other.tag.Equals("Blast") && !other.name.Equals("EnemyBlastCircle(Clone)"))
-        {
-            Projectile projectile = other.gameObject.GetComponent<Projectile>();
-            float damageTaken = projectile.damage;
-            if (cursed)
-            {
-                damageTaken *= 2;
-            }
-            health -= damageTaken;
-        }
-        if (other.tag.Equals("InkSplat"))
-        {
-            InkSplat inkSplat = other.gameObject.GetComponent<InkSplat>();
-            inked = true;
-            timeInked = Time.time;
-            inkTime = inkSplat.damage;
-        }*/
-    }
 }
