@@ -12,7 +12,14 @@ public class OreVein : MonoBehaviour
     public GameObject spawnPoint;
 
     public void SpawnResources() {
-        int r = Mathf.FloorToInt(Random.Range(minDrop, maxDrop)/2);
+        float m = Random.Range(minDrop, maxDrop);
+        int r;
+        if (m >= 2) {
+            r = Mathf.FloorToInt(m/2);
+        } else {
+            r = Mathf.FloorToInt(m);
+        }
+        
 
         if (r > 0) {
             for (int o = 0; o < r; o++) {
