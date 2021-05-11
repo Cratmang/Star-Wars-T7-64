@@ -18,4 +18,13 @@ public class Resource : MonoBehaviour
             }
         }
     }
+
+    public void Initiate() {
+        timer = 0;
+        ripe = false;
+        float xForce = Random.Range(-2.5F, 2.5F);
+        float yForce = Random.Range(0.1F, 5.0F);
+        float zForce = Random.Range(-2.5F, 2.5F);
+        gameObject.GetComponent<Rigidbody>().velocity = (new Vector3(xForce, yForce, zForce));
+    }
 }

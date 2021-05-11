@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour
 
     public Transform[] transforms;
 
-    bool locked = false;
+    bool locked = false, mining = false;
 
     public Texture2D cursorNormal;
     public Texture2D cursorGoTo;
@@ -50,7 +50,10 @@ public class PlayerManager : MonoBehaviour
     private int[] resourceCount = new int[6];
 
     float timer;
-    public float frameTime;
+    public float frameTime, interactTime;
+    GameObject interactTarget;
+
+   
 
 
     private void Start() {
@@ -65,9 +68,19 @@ public class PlayerManager : MonoBehaviour
         //TO DO: Change cursor when it hovers over interactable object or passageway
 
         if (locked) {
+            Cursor.SetCursor(cursorLocked, hotSpot, cursorMode);
 
-           Cursor.SetCursor(cursorLocked, hotSpot, cursorMode);
-           
+            if (mining) {
+                timer += Time.deltaTime;
+
+                if (timer >= interactTime) {
+                    interactTarget.GetComponent<OreVein>().SpawnResources();
+                    mining = false;
+                    locked = false;
+                }
+            }
+
+
         } else {
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -101,6 +114,13 @@ public class PlayerManager : MonoBehaviour
 
                 }
 
+                OreVein ov = hit.transform.gameObject.GetComponent<OreVein>();
+                if (ov) {
+                    // TO-DO: Draw mining cursor
+                    Cursor.SetCursor(cursorGoTo, hotSpot, cursorMode);
+                    f = true;
+                }
+
                 if (!f) {             
                     //TO DO - Interactable object, enemy, etc. 
                     Cursor.SetCursor(cursorNormal, hotSpot, cursorMode);
@@ -128,6 +148,15 @@ public class PlayerManager : MonoBehaviour
                     Enemy en = hit.transform.gameObject.GetComponent<Enemy>();
                     if (en) {
                         tee7.FireLazor(hit.point, hit.transform.gameObject);
+                    }
+
+                    OreVein ov = hit.transform.gameObject.GetComponent<OreVein>();
+                    if (ov) {
+                        LockInput();
+                        interactTime = ov.mineTime;
+                        timer = 0;
+                        mining = true;
+                        interactTarget = ov.gameObject;
                     }
 
                 }

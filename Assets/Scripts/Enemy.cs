@@ -179,11 +179,12 @@ public class Enemy : MonoBehaviour {
 
         for (int b = 0; b < a; b++) {
             int d = (int)Random.Range(0, drops.Length);
-            GameObject loot = Instantiate(drops[d], lootSpawn, transform.rotation);
-            float xForce = Random.Range(-2.5F, 2.5F);
+            Resource loot = Instantiate(drops[d], lootSpawn, transform.rotation).GetComponent<Resource>();
+            loot.Initiate();
+            /*float xForce = Random.Range(-2.5F, 2.5F);
             float yForce = Random.Range( 0.1F, 5.0F);
             float zForce = Random.Range(-2.5F, 2.5F);
-            loot.GetComponent<Rigidbody>().velocity = (new Vector3(xForce, yForce, zForce));
+            loot.GetComponent<Rigidbody>().velocity = (new Vector3(xForce, yForce, zForce));*/
         }
 
         Destroy(gameObject);

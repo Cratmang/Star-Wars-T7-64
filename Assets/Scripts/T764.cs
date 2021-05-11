@@ -22,6 +22,8 @@ public class T764 : MonoBehaviour
     public GameObject laserPrefab;
     public int damage;
     public Vector3 laserSpawnOffset;
+    public float laserRechargeTime;
+    float laserTimer = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -44,6 +46,10 @@ public class T764 : MonoBehaviour
                 waypointFro = waypointTo;
                 pm.UnlockInput();
             }
+        }
+
+        if (laserTimer < laserRechargeTime) {
+            laserTimer += Time.deltaTime;
         }
     }
 
@@ -165,10 +171,19 @@ public class T764 : MonoBehaviour
 
     //TO-DO: Add recharge time on laser attack.
     public void FireLazor(Vector3 targetV, GameObject target) {
-        Vector3 start = transform.position + laserSpawnOffset;
-        Laser lazor = Instantiate(laserPrefab, start, transform.rotation).GetComponent<Laser>();
-        lazor.Initiate(start, targetV, target, damage, true);
+        if (laserTimer >= laserRechargeTime) {
+            Vector3 start = transform.position + laserSpawnOffset;
+            Laser lazor = Instantiate(laserPrefab, start, transform.rotation).GetComponent<Laser>();
+            lazor.Initiate(start, targetV, target, damage, true);
+            laserTimer = 0;
+        }
+    }
 
+    public void TakeDamage(int d) {
+        hp -= d;
+        if (hp <= 0) {
+            // Commit die
+        }
     }
 
 }

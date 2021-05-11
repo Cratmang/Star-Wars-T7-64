@@ -48,6 +48,8 @@ public class Laser : MonoBehaviour
 
         sr1.sprite = laserColour[c];
         sr2.sprite = laserColour[c];
+
+        transform.rotation = Quaternion.LookRotation(targetV - transform.position);
     }
     public void Initiate(Vector3 hv, GameObject tar, int d, bool f) {
         Initiate(hv, tar.transform.position, tar, d, f);
