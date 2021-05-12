@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public float spawnTime;
     float timer = 0;
 
+    public List<GameObject> enemies;
 
     // Start is called before the first frame update
     void Start()
@@ -66,4 +67,24 @@ public class GameManager : MonoBehaviour
             timer = 0;
         }
     }
+
+
+    //Putting this code in Room.cs instead
+    /*public GameObject getTargetInRoom(int roomID) {
+        List<GameObject> eList = new List<GameObject>();
+        for (int i = 0; i < enemies.Count; i++) {
+            Enemy e = enemies[i].GetComponent<Enemy>();
+            if (e.roomID == roomID) {
+                eList.Add(enemies[i].gameObject);
+            }
+        }
+
+        if (eList.Count == 0) {
+            return null;
+        } else {
+            int t = Random.Range(0, eList.Count);
+            return eList[t];
+        }
+    }*/
+
 }

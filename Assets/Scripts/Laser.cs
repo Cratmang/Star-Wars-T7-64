@@ -10,6 +10,8 @@ public class Laser : MonoBehaviour
     GameObject target;
     public float speed = 1.0f;
     float spawnTime;
+    Room room;
+    //int roomID;
 
     public Sprite[] laserColour;
     // 0 = green
@@ -19,13 +21,15 @@ public class Laser : MonoBehaviour
     public SpriteRenderer sr1, sr2;
 
     
-    public void Initiate(Vector3 hv, Vector3 tv, GameObject tar, int d, bool f) {
+    public void Initiate(Vector3 hv, Vector3 tv, GameObject tar, int d, bool f, Room r) {
         homeV = hv;
         targetV = tv;
         target = tar;
         damage = d;
         spawnTime = Time.time;
         friendly = f;
+        room = r;
+        //roomID = id;
 
         gameObject.layer = 2;
         int c = 0;
@@ -51,8 +55,9 @@ public class Laser : MonoBehaviour
 
         transform.rotation = Quaternion.LookRotation(targetV - transform.position);
     }
-    public void Initiate(Vector3 hv, GameObject tar, int d, bool f) {
-        Initiate(hv, tar.transform.position, tar, d, f);
+    public void Initiate(Vector3 hv, GameObject tar, int d, bool f, Room r) {
+        Initiate(hv, tar.transform.position, tar, d, f, r);
+        //Added case in case for some reason I can't get an appropriate target Vector. Just get the targets actual position, and use that.
     }
 
     // Update is called once per frame

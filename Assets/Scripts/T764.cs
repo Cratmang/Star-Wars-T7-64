@@ -11,7 +11,7 @@ public class T764 : MonoBehaviour
     public List<Transform> standHere;
     public List<Transform> travelWaypoints;
     public Transform waypointTo, waypointFro;
-    int room;
+    public Room room;
     //Refer to list of CameraPos
 
 
@@ -24,6 +24,8 @@ public class T764 : MonoBehaviour
     public Vector3 laserSpawnOffset;
     public float laserRechargeTime;
     float laserTimer = 0;
+
+
     
     // Start is called before the first frame update
     void Start()
@@ -53,6 +55,11 @@ public class T764 : MonoBehaviour
         }
     }
 
+
+    // Code to travel between rooms. I may need to rewrite this code entirely to account for the Room object.
+    //   Possible solution: include a refrence to the next room in Door.cs.
+    //    Gonna go to bed now though, because it is 23:54 (almost midnight!) at the time I'm writing, and I want
+    //    to have some semblance of a sleep schedule.
     public void TravelTo (int newRoom){
         traveling = true;
         timer = 0;
@@ -64,7 +71,7 @@ public class T764 : MonoBehaviour
                 break;
 
             case 1:// Atrium
-                switch (room) {
+                switch (room.roomID) {
                     case 0:// From Command Room
                         waypointFro = travelWaypoints[1];
                         break;
@@ -91,7 +98,7 @@ public class T764 : MonoBehaviour
                 break;
 
             case 2:// Mine Entrance
-                switch (room) {
+                switch (room.roomID) {
                     case 1:// From Atrium
                         waypointFro = travelWaypoints[7];
                         break;
@@ -111,7 +118,7 @@ public class T764 : MonoBehaviour
                 break;
 
             case 4:// Hall B
-                switch (room) {
+                switch (room.roomID) {
                     case 1:// From Atrium
                         waypointFro = travelWaypoints[11];
                         break;
@@ -126,7 +133,7 @@ public class T764 : MonoBehaviour
                 break;
 
             case 5:// Hall A
-                switch (room) {
+                switch (room.roomID) {
                     case 4:// From Hall B
                         waypointFro = travelWaypoints[12];
                         break;
@@ -166,7 +173,7 @@ public class T764 : MonoBehaviour
                 break;
         }
         waypointTo = standHere[newRoom];
-        room = newRoom;
+        //roomID = newRoom;
     }
 
     //TO-DO: Add recharge time on laser attack.
@@ -174,7 +181,7 @@ public class T764 : MonoBehaviour
         if (laserTimer >= laserRechargeTime) {
             Vector3 start = transform.position + laserSpawnOffset;
             Laser lazor = Instantiate(laserPrefab, start, transform.rotation).GetComponent<Laser>();
-            lazor.Initiate(start, targetV, target, damage, true);
+            lazor.Initiate(start, targetV, target, damage, true, room);
             laserTimer = 0;
         }
     }

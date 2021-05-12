@@ -34,6 +34,8 @@ public class Enemy : MonoBehaviour {
     public float totalTimeForPath;
     public float currentTimeOnPath;
 
+    public Room room;
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -160,7 +162,7 @@ public class Enemy : MonoBehaviour {
             Vector3 targetV = target.transform.position + targetOffset;
             Vector3 start = transform.position + laserSpawnOffset;
             Laser lazor = Instantiate(laserPrefab, start, transform.rotation).GetComponent<Laser>();
-            lazor.Initiate(start, targetV, target, damage, false);
+            lazor.Initiate(start, targetV, target, damage, false, room);
         }
         
     }
