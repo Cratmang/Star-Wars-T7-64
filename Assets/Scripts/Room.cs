@@ -9,7 +9,7 @@ public class Room : MonoBehaviour
     public Room nextRoom, prevRoom;
     public Door[] exits;
 
-    public List<GameObject> enemiesInRoom;
+    public List<Enemy> enemiesInRoom;
     public List<GameObject> alliesInRoom;
     public List<GameObject> pathway;
 
@@ -28,7 +28,7 @@ public class Room : MonoBehaviour
 
     //This is for the enemies
     //Returns the path for the enemies to follow through the room.
-    public List<GameObject> EnterRoom(GameObject newEn, bool escaping) {
+    /*public List<GameObject> EnterRoom(GameObject newEn, bool escaping) {
         enemiesInRoom.Add(newEn);
         newEn.GetComponent<Enemy>().room.LeaveRoom(newEn);
         newEn.GetComponent<Enemy>().room = this;
@@ -45,11 +45,11 @@ public class Room : MonoBehaviour
     public void LeaveRoom(GameObject byeEn) {
         enemiesInRoom.Remove(byeEn);
         Debug.Log("Welcome, friend!");
-    }
+    }*/
 
-    public List<GameObject> EnemySpawning(GameObject en) {
+    /*public List<GameObject> EnemySpawning(Enemy en) {
         enemiesInRoom.Add(en);
-        en.GetComponent<Enemy>().room = this;
+        en.room = this;
         return pathway;
     }
 
@@ -69,7 +69,7 @@ public class Room : MonoBehaviour
 
     public bool IsInRoom(GameObject thing, bool friend) {
         if (!friend) {
-            if (enemiesInRoom.Contains(thing)) {
+            if (enemiesInRoom.Contains(thing.GetComponent<Enemy>())) {
                 return true;
             } else {
                 return false;
@@ -83,8 +83,16 @@ public class Room : MonoBehaviour
         }
     }
 
+    public bool IsInRoom(Enemy thing) {
+        if (thing.room.Equals(this)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-    public GameObject TargetEnemy() {
+
+    public Enemy TargetEnemy() {
         if (enemiesInRoom.Count == 0) {
             return null;
         } else {
@@ -98,7 +106,7 @@ public class Room : MonoBehaviour
             return null;
         } else {
             int i = Random.Range(0, alliesInRoom.Count);
-            return enemiesInRoom[i];
+            return alliesInRoom[i];
         }
-    }
+    }*/
 }

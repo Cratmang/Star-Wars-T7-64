@@ -713,6 +713,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 158272648}
+  - component: {fileID: 158272649}
   m_Layer: 0
   m_Name: WaypointFromAtriumToV642
   m_TagString: Untagged
@@ -734,6 +735,20 @@ Transform:
   m_Father: {fileID: 614268358}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &158272649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158272647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b22c179fe36784b9b6e6a2046d7f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLocationIndex: 9
+  nextRoom: {fileID: 1010989697}
 --- !u!1 &166918949
 GameObject:
   m_ObjectHideFlags: 0
@@ -6897,6 +6912,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1142250431}
+  - component: {fileID: 1142250432}
   m_Layer: 0
   m_Name: WaypointFromAtriumToV640
   m_TagString: Untagged
@@ -6918,6 +6934,20 @@ Transform:
   m_Father: {fileID: 614268358}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1142250432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142250430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b22c179fe36784b9b6e6a2046d7f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLocationIndex: 7
+  nextRoom: {fileID: 456570318}
 --- !u!1 &1166420753
 GameObject:
   m_ObjectHideFlags: 0
@@ -10407,6 +10437,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1849468393}
+  - component: {fileID: 1849468394}
   m_Layer: 0
   m_Name: EnemyWaypointHB4
   m_TagString: Untagged
@@ -10428,6 +10459,20 @@ Transform:
   m_Father: {fileID: 1971794503}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1849468394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849468392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b22c179fe36784b9b6e6a2046d7f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLocationIndex: 1
+  nextRoom: {fileID: 614268359}
 --- !u!1 &1856641425
 GameObject:
   m_ObjectHideFlags: 0
@@ -11692,6 +11737,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1999663014}
+  - component: {fileID: 1999663015}
   m_Layer: 0
   m_Name: WaypointFromAtriumToV641
   m_TagString: Untagged
@@ -11713,6 +11759,20 @@ Transform:
   m_Father: {fileID: 614268358}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1999663015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999663013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b22c179fe36784b9b6e6a2046d7f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLocationIndex: 8
+  nextRoom: {fileID: 536602196}
 --- !u!1 &2009987144
 GameObject:
   m_ObjectHideFlags: 0

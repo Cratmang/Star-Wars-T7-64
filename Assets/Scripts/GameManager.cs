@@ -63,9 +63,9 @@ public class GameManager : MonoBehaviour
             List<Transform> path = new List<Transform>();
 
             //TO-DO: Set up path randomization. Choose between Vaults 0 - 2, start in the Hangar, the Vent, or the Mine.
-            path.AddRange(enemyHangarPath);
-            path.AddRange(enemyVault1PathHangar); 
-            path.AddRange(enemyVault1Path);
+            //*path.AddRange(enemyHangarPath);
+            //path.AddRange(enemyVault1PathHangar); 
+            //path.AddRange(enemyVault1Path);*/
             newEn.GetComponent<Enemy>().Initiate(hangarBay, this, 0);
 
             timer = 0;

@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour {
     protected GameManager gm;
     public List<GameObject> waypoints;
     public List<int> safeWaypoints;
-    protected int currentWaypoint = 0;
+    public int currentWaypoint = 0;
     public float lastWaypointSwitchTime;
     public float speed = 1.0f;
     public bool moving;
@@ -35,6 +35,16 @@ public class Enemy : MonoBehaviour {
     public float currentTimeOnPath;
 
     public Room room;
+
+    /*public Enemy Clone(Room r, GameManager g) => new Enemy {
+        health = this.health,
+        maxHealth = this.maxHealth,
+        waypoints = r.pathway,
+        room = r,
+        gm = g,
+        lastWaypointSwitchTime = Time.time
+    };*/
+
 
     void Awake()
     {
@@ -81,12 +91,14 @@ public class Enemy : MonoBehaviour {
     {
         this.gm = gm;
         lastWaypointSwitchTime = Time.time;
-        waypoints = spawnRoom.EnemySpawning(gameObject);
+        room = spawnRoom;
+        //waypoints = new List<GameObject>();
+        //waypoints = spawnRoom.pathway;
         currentWaypoint = startPoint;
-        startPosition = waypoints[currentWaypoint].transform.position;
-        endPosition = waypoints[currentWaypoint + 1].transform.position;
-        Vector2 vectorToTarget = waypoints[currentWaypoint + 1].transform.position - transform.position;
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90;
+        startPosition = spawnRoom.pathway[currentWaypoint].transform.position;
+        endPosition = spawnRoom.pathway[currentWaypoint + 1].transform.position;
+        /*Vector2 vectorToTarget = waypoints[currentWaypoint + 1].transform.position - transform.position;
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90;*/
         //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         health = maxHealth;
         moving = true;
@@ -98,8 +110,8 @@ public class Enemy : MonoBehaviour {
         
 
         //Movement
-        startPosition = waypoints[currentWaypoint].transform.position;
-        endPosition = waypoints[currentWaypoint + 1].transform.position;
+        //startPosition = waypoints[currentWaypoint].transform.position;
+        //endPosition = waypoints[currentWaypoint + 1].transform.position;
 
         pathLength = Vector3.Distance(startPosition, endPosition);
         totalTimeForPath = pathLength / speed;//step;
@@ -116,29 +128,35 @@ public class Enemy : MonoBehaviour {
 
         if (gameObject.transform.position.Equals(endPosition))
         {
-            if (currentWaypoint < waypoints.Count - 2) {
+            if (currentWaypoint < room.pathway.Count - 2) {
                 currentWaypoint++;
-                lastWaypointSwitchTime = Time.time;
 
                 /*//Add check if the next Waypoint is in the next room. If yes, teleport to the next room.
                 if (!waypoints[currentWaypoint + 1]) {
                     currentWaypoint += 2;
-                    transform.position = waypoints[currentWaypoint].transform.position;
+                    
                 }*/
 
             } else {//Crap! They've reached the end!
                 //TO-DO: Enemy needs variable for when they're actively escaping. Just a simple boolean.
-                Door d = waypoints[currentWaypoint+1].GetComponent<Door>();
+                Door d = room.pathway[currentWaypoint+1].GetComponent<Door>();
 
                 if (d) {
-                    Debug.Log("Going to " + d.nextRoom.roomID);
                     currentWaypoint = 0;
-                    waypoints.Clear();
-                    waypoints.AddRange(d.nextRoom.EnterRoom(gameObject, false));
+                    //waypoints.Clear();
+                    room = d.nextRoom;
+                    transform.position = room.pathway[0].transform.position;
+                    //waypoints.AddRange(room.pathway);
+                    //waypoints.AddRange(d.nextRoom.EnterRoom(gameObject, false));
                 } else {
                     Destroy(gameObject);
                 }
             }
+
+            startPosition = room.pathway[currentWaypoint].transform.position;
+            endPosition = room.pathway[currentWaypoint + 1].transform.position;
+            lastWaypointSwitchTime = Time.time;
+
         }
 
         //Rotate/Point towards next waypoint

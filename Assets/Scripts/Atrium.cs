@@ -8,7 +8,7 @@ public class Atrium : Room
     public List<GameObject> pathwayHallToVault0, pathwayHallToVault1, pathwayHallToVault2, pathwayMineToVault0, pathwayMineToVault1, pathwayMineToVault2;
 
     //TO-DO: When enemies reach this room, they need to decide which vault they're aiming for (assuming they haven't already).
-    new public List<GameObject> EnterRoom(GameObject newEn, bool escaping) {
+    /*new public List<GameObject> EnterRoom(GameObject newEn, bool escaping) {
         enemiesInRoom.Add(newEn);
         newEn.GetComponent<Enemy>().room = this;
 
@@ -20,5 +20,10 @@ public class Atrium : Room
         } else {
             return pathwayHallToVault1;
         }
+    }*/
+
+    new public List<GameObject> pathway() {
+        //Need to determine path for enemy
+        return pathwayHallToVault1;
     }
 }

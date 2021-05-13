@@ -145,7 +145,7 @@ public class PlayerManager : MonoBehaviour
 
                         //Give Previous location and Next Location to T7-64
                         tee7.TravelTo(passage.nextRoom.roomID);
-                        passage.nextRoom.EnterRoom(tee7);
+                        tee7.room = passage.nextRoom;
 
                         //prevLocationIndex = nextLocationIndex;
                         LockInput();
