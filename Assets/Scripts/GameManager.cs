@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
     //Spawns and manages enemies
 
 
+    //Enemy Spawn Rooms
+    public Room hangarBay, mine, vent;
+    public bool mineSpawnActive, ventSpawnActive;
+
     //Enemy Paths
     // Basically, the waypoints for every enemy path. These are meant to be mix-matched-stitched together to create a single path through the base.
     
@@ -62,7 +66,7 @@ public class GameManager : MonoBehaviour
             path.AddRange(enemyHangarPath);
             path.AddRange(enemyVault1PathHangar); 
             path.AddRange(enemyVault1Path);
-            newEn.GetComponent<Enemy>().Initiate(path, this, 0);
+            newEn.GetComponent<Enemy>().Initiate(hangarBay, this, 0);
 
             timer = 0;
         }

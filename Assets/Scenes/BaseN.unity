@@ -5166,6 +5166,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04f12a3552a8f144bb74edc132a723ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hangarBay: {fileID: 1252514519}
+  mine: {fileID: 928394819}
+  vent: {fileID: 828348016}
+  mineSpawnActive: 0
+  ventSpawnActive: 0
   enemyHangarPath:
   - {fileID: 1567250045}
   - {fileID: 939905056}

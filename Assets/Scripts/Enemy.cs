@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour {
     public float health;
     public float maxHealth;
     protected GameManager gm;
-    public List<Transform> waypoints;
+    public List<GameObject> waypoints;
     public List<int> safeWaypoints;
     protected int currentWaypoint = 0;
     public float lastWaypointSwitchTime;
@@ -77,11 +77,11 @@ public class Enemy : MonoBehaviour {
 
     }*/
 
-    public void Initiate(List<Transform> pw, GameManager gm, int startPoint)
+    public void Initiate(Room spawnRoom, GameManager gm, int startPoint)
     {
         this.gm = gm;
         lastWaypointSwitchTime = Time.time;
-        waypoints = pw;
+        waypoints = spawnRoom.EnemySpawning(gameObject);
         currentWaypoint = startPoint;
         startPosition = waypoints[currentWaypoint].transform.position;
         endPosition = waypoints[currentWaypoint + 1].transform.position;
@@ -116,22 +116,28 @@ public class Enemy : MonoBehaviour {
 
         if (gameObject.transform.position.Equals(endPosition))
         {
-            if (currentWaypoint < waypoints.Count - 2)
-            {
+            if (currentWaypoint < waypoints.Count - 2) {
                 currentWaypoint++;
                 lastWaypointSwitchTime = Time.time;
 
-                //Add check if the next Waypoint is in the next room. If yes, teleport to the next room.
-                if (!waypoints[currentWaypoint+1]) {
+                /*//Add check if the next Waypoint is in the next room. If yes, teleport to the next room.
+                if (!waypoints[currentWaypoint + 1]) {
                     currentWaypoint += 2;
                     transform.position = waypoints[currentWaypoint].transform.position;
-                }
+                }*/
 
-            }
-            else {//Crap! They've reached the end!
-                //gameManager.EnemyReachedGoal(bounty[level]);
-                Destroy(gameObject);
-                
+            } else {//Crap! They've reached the end!
+                //TO-DO: Enemy needs variable for when they're actively escaping. Just a simple boolean.
+                Door d = waypoints[currentWaypoint+1].GetComponent<Door>();
+
+                if (d) {
+                    Debug.Log("Going to " + d.nextRoom.roomID);
+                    currentWaypoint = 0;
+                    waypoints.Clear();
+                    waypoints.AddRange(d.nextRoom.EnterRoom(gameObject, false));
+                } else {
+                    Destroy(gameObject);
+                }
             }
         }
 

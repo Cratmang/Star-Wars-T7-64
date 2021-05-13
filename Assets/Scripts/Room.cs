@@ -30,6 +30,7 @@ public class Room : MonoBehaviour
     //Returns the path for the enemies to follow through the room.
     public List<GameObject> EnterRoom(GameObject newEn, bool escaping) {
         enemiesInRoom.Add(newEn);
+        newEn.GetComponent<Enemy>().room.LeaveRoom(newEn);
         newEn.GetComponent<Enemy>().room = this;
         
         if (escaping) {
@@ -41,14 +42,18 @@ public class Room : MonoBehaviour
             return pathway;
         }
     }
-    public void LeaveRoom(GameObject byeEn, bool escaping) {
+    public void LeaveRoom(GameObject byeEn) {
         enemiesInRoom.Remove(byeEn);
-        /*if (escaping) {
-            return prevRoom;
-        } else {
-            return nextRoom;
-        }*/
+        Debug.Log("Welcome, friend!");
     }
+
+    public List<GameObject> EnemySpawning(GameObject en) {
+        enemiesInRoom.Add(en);
+        en.GetComponent<Enemy>().room = this;
+        return pathway;
+    }
+
+
 
     //This is for the player
     public void EnterRoom(T764 them) {
