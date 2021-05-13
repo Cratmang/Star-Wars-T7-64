@@ -132,16 +132,22 @@ public class PlayerManager : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0)) {
                 if (Physics.Raycast(ray, out hit)) {
+
+                    //Door to next room
                     Door passage = hit.transform.gameObject.GetComponent<Door>();
                     if (passage) {
 
-                        nextLocationIndex = passage.nextLocationIndex;
-                        SwitchPosition(nextLocationIndex);
+                        //nextLocationIndex = passage.nextLocationIndex;
+                        //SwitchPosition(nextLocationIndex);
+
+                        transform.position = passage.nextRoom.cameraTransform.position;
+                        transform.rotation = passage.nextRoom.cameraTransform.rotation;
 
                         //Give Previous location and Next Location to T7-64
-                        tee7.TravelTo(nextLocationIndex);
+                        tee7.TravelTo(passage.nextRoom.roomID);
+                        passage.nextRoom.EnterRoom(tee7);
 
-                        prevLocationIndex = nextLocationIndex;
+                        //prevLocationIndex = nextLocationIndex;
                         LockInput();
                     }
 

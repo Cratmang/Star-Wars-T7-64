@@ -396,6 +396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 3
+  nextRoom: {fileID: 928394819}
 --- !u!1 &89918922
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,6 +1073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 9
+  nextRoom: {fileID: 1010989697}
 --- !u!1 &226311171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1217,6 +1219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 1
+  nextRoom: {fileID: 614268359}
 --- !u!1 &244890890
 GameObject:
   m_ObjectHideFlags: 0
@@ -2305,6 +2308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 456570317}
+  - component: {fileID: 456570318}
   m_Layer: 0
   m_Name: Vault 640
   m_TagString: Untagged
@@ -2339,6 +2343,33 @@ Transform:
   m_Father: {fileID: 1381934054}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &456570318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456570316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73bd2d4a0c55d7a42a9a0697b04e4b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomID: 7
+  connectedRooms: []
+  nextRoom: {fileID: 0}
+  prevRoom: {fileID: 0}
+  exits: []
+  enemiesInRoom: []
+  alliesInRoom: []
+  pathway:
+  - {fileID: 1921468742}
+  - {fileID: 2109850358}
+  - {fileID: 729470751}
+  - {fileID: 1478884802}
+  - {fileID: 768117176}
+  cameraTransform: {fileID: 40844439}
+  sentries: []
 --- !u!1 &461073945
 GameObject:
   m_ObjectHideFlags: 0
@@ -2949,6 +2980,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 536602195}
+  - component: {fileID: 536602196}
   m_Layer: 0
   m_Name: Vault 641
   m_TagString: Untagged
@@ -2983,6 +3015,33 @@ Transform:
   m_Father: {fileID: 1381934054}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &536602196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536602194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73bd2d4a0c55d7a42a9a0697b04e4b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomID: 8
+  connectedRooms: []
+  nextRoom: {fileID: 0}
+  prevRoom: {fileID: 0}
+  exits: []
+  enemiesInRoom: []
+  alliesInRoom: []
+  pathway:
+  - {fileID: 1651761318}
+  - {fileID: 786026782}
+  - {fileID: 1396855271}
+  - {fileID: 983848270}
+  - {fileID: 1093739829}
+  cameraTransform: {fileID: 1139487531}
+  sentries: []
 --- !u!1 &537145470
 GameObject:
   m_ObjectHideFlags: 0
@@ -3120,6 +3179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 8
+  nextRoom: {fileID: 536602196}
 --- !u!1 &544800098
 GameObject:
   m_ObjectHideFlags: 0
@@ -3257,6 +3317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 1
+  nextRoom: {fileID: 614268359}
 --- !u!1 &558037467
 GameObject:
   m_ObjectHideFlags: 0
@@ -3356,6 +3417,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 614268358}
+  - component: {fileID: 614268359}
   m_Layer: 0
   m_Name: Atrium
   m_TagString: Untagged
@@ -3398,6 +3460,53 @@ Transform:
   m_Father: {fileID: 1381934054}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &614268359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614268357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2c9eadb23367a4f99982fad5b6980b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomID: 1
+  connectedRooms: []
+  nextRoom: {fileID: 0}
+  prevRoom: {fileID: 0}
+  exits: []
+  enemiesInRoom: []
+  alliesInRoom: []
+  pathway: []
+  cameraTransform: {fileID: 387589151}
+  sentries: []
+  pathwayHallToVault0:
+  - {fileID: 1699506861}
+  - {fileID: 1142250430}
+  pathwayHallToVault1:
+  - {fileID: 1699506861}
+  - {fileID: 1186431649}
+  - {fileID: 1999663013}
+  pathwayHallToVault2:
+  - {fileID: 1699506861}
+  - {fileID: 1186431649}
+  - {fileID: 1679286081}
+  - {fileID: 158272647}
+  pathwayMineToVault0:
+  - {fileID: 670265822}
+  - {fileID: 1679286081}
+  - {fileID: 1186431649}
+  - {fileID: 1142250430}
+  pathwayMineToVault1:
+  - {fileID: 670265822}
+  - {fileID: 1679286081}
+  - {fileID: 1999663013}
+  pathwayMineToVault2:
+  - {fileID: 670265822}
+  - {fileID: 579431980}
+  - {fileID: 158272647}
 --- !u!1 &660041535
 GameObject:
   m_ObjectHideFlags: 0
@@ -3407,6 +3516,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 660041536}
+  - component: {fileID: 660041537}
   m_Layer: 0
   m_Name: HallA
   m_TagString: Untagged
@@ -3435,6 +3545,31 @@ Transform:
   m_Father: {fileID: 1381934054}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &660041537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660041535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540aaac5412c73348a27e28d351ee283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomID: 5
+  connectedRooms: []
+  nextRoom: {fileID: 0}
+  prevRoom: {fileID: 0}
+  exits: []
+  enemiesInRoom: []
+  alliesInRoom: []
+  pathway:
+  - {fileID: 1550150160}
+  - {fileID: 894959141}
+  - {fileID: 1056813009}
+  cameraTransform: {fileID: 1758920851}
+  sentries: []
 --- !u!1 &670048597
 GameObject:
   m_ObjectHideFlags: 0
@@ -4016,6 +4151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 4
+  nextRoom: {fileID: 828348016}
 --- !u!1 &757542898
 GameObject:
   m_ObjectHideFlags: 0
@@ -4698,6 +4834,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 828348015}
+  - component: {fileID: 828348016}
   m_Layer: 0
   m_Name: HallB
   m_TagString: Untagged
@@ -4729,6 +4866,33 @@ Transform:
   m_Father: {fileID: 1381934054}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &828348016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828348014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c0a24ae04ca3c644a147657b8b6df80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomID: 4
+  connectedRooms: []
+  nextRoom: {fileID: 0}
+  prevRoom: {fileID: 0}
+  exits: []
+  enemiesInRoom: []
+  alliesInRoom: []
+  pathway:
+  - {fileID: 972289654}
+  - {fileID: 468334048}
+  - {fileID: 1608910434}
+  - {fileID: 1849468392}
+  cameraTransform: {fileID: 558037468}
+  sentries: []
+  ventPath: []
 --- !u!1 &835044278
 GameObject:
   m_ObjectHideFlags: 0
@@ -5373,6 +5537,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 928394818}
+  - component: {fileID: 928394819}
   m_Layer: 0
   m_Name: Mine
   m_TagString: Untagged
@@ -5403,6 +5568,33 @@ Transform:
   m_Father: {fileID: 1381934054}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &928394819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928394817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540aaac5412c73348a27e28d351ee283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomID: 3
+  connectedRooms: []
+  nextRoom: {fileID: 0}
+  prevRoom: {fileID: 0}
+  exits: []
+  enemiesInRoom: []
+  alliesInRoom: []
+  pathway:
+  - {fileID: 2009987144}
+  - {fileID: 1874065254}
+  - {fileID: 1810208010}
+  - {fileID: 2110687607}
+  - {fileID: 1288300335}
+  cameraTransform: {fileID: 103558009}
+  sentries: []
 --- !u!1 &930564690
 GameObject:
   m_ObjectHideFlags: 0
@@ -5971,7 +6163,7 @@ MonoBehaviour:
   laserSpawnOffset: {x: 0, y: 0.75, z: 0}
   attackRechargeTime: 3
   gm: {fileID: 0}
-  room: {fileID: 0}
+  room: {fileID: 614268359}
 --- !u!1 &983848270
 GameObject:
   m_ObjectHideFlags: 0
@@ -6011,6 +6203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1010989696}
+  - component: {fileID: 1010989697}
   m_Layer: 0
   m_Name: Vault 642
   m_TagString: Untagged
@@ -6045,6 +6238,33 @@ Transform:
   m_Father: {fileID: 1381934054}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1010989697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010989695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73bd2d4a0c55d7a42a9a0697b04e4b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomID: 9
+  connectedRooms: []
+  nextRoom: {fileID: 0}
+  prevRoom: {fileID: 0}
+  exits: []
+  enemiesInRoom: []
+  alliesInRoom: []
+  pathway:
+  - {fileID: 138097587}
+  - {fileID: 182067388}
+  - {fileID: 1862222088}
+  - {fileID: 1719243727}
+  - {fileID: 2053709233}
+  cameraTransform: {fileID: 31499711}
+  sentries: []
 --- !u!1 &1023107501
 GameObject:
   m_ObjectHideFlags: 0
@@ -6152,6 +6372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 1
+  nextRoom: {fileID: 614268359}
 --- !u!1 &1024127658
 GameObject:
   m_ObjectHideFlags: 0
@@ -6378,6 +6599,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1056813010}
+  - component: {fileID: 1056813011}
   m_Layer: 0
   m_Name: EnemyHAWaypoint2
   m_TagString: Untagged
@@ -6399,6 +6621,20 @@ Transform:
   m_Father: {fileID: 166918950}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1056813011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056813009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b22c179fe36784b9b6e6a2046d7f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLocationIndex: 0
+  nextRoom: {fileID: 828348016}
 --- !u!1 &1065966140
 GameObject:
   m_ObjectHideFlags: 0
@@ -6840,6 +7076,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1208974318}
+  - component: {fileID: 1208974319}
   m_Layer: 0
   m_Name: MineEntrance
   m_TagString: Untagged
@@ -6872,6 +7109,32 @@ Transform:
   m_Father: {fileID: 1381934054}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1208974319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208974317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540aaac5412c73348a27e28d351ee283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomID: 2
+  connectedRooms: []
+  nextRoom: {fileID: 0}
+  prevRoom: {fileID: 0}
+  exits: []
+  enemiesInRoom: []
+  alliesInRoom: []
+  pathway:
+  - {fileID: 465796833}
+  - {fileID: 1046376538}
+  - {fileID: 134666492}
+  - {fileID: 1805049610}
+  cameraTransform: {fileID: 1715516384}
+  sentries: []
 --- !u!1 &1247338005
 GameObject:
   m_ObjectHideFlags: 0
@@ -6979,6 +7242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 4
+  nextRoom: {fileID: 828348016}
 --- !u!1 &1252514517
 GameObject:
   m_ObjectHideFlags: 0
@@ -6988,6 +7252,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1252514518}
+  - component: {fileID: 1252514519}
   m_Layer: 0
   m_Name: Hanger Bay
   m_TagString: Untagged
@@ -7014,6 +7279,31 @@ Transform:
   m_Father: {fileID: 1381934054}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1252514519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252514517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540aaac5412c73348a27e28d351ee283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomID: 6
+  connectedRooms: []
+  nextRoom: {fileID: 0}
+  prevRoom: {fileID: 0}
+  exits: []
+  enemiesInRoom: []
+  alliesInRoom: []
+  pathway:
+  - {fileID: 1567250044}
+  - {fileID: 939905055}
+  - {fileID: 1716380031}
+  cameraTransform: {fileID: 1605399625}
+  sentries: []
 --- !u!1 &1257608212
 GameObject:
   m_ObjectHideFlags: 0
@@ -7556,6 +7846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 2
+  nextRoom: {fileID: 1208974319}
 --- !u!1 &1373520938
 GameObject:
   m_ObjectHideFlags: 0
@@ -8516,6 +8807,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1550150161}
+  - component: {fileID: 1550150162}
   m_Layer: 0
   m_Name: EnemyHAWaypoint0
   m_TagString: Untagged
@@ -8537,6 +8829,20 @@ Transform:
   m_Father: {fileID: 166918950}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1550150162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550150160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b22c179fe36784b9b6e6a2046d7f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLocationIndex: 0
+  nextRoom: {fileID: 1252514519}
 --- !u!1 &1567250044
 GameObject:
   m_ObjectHideFlags: 0
@@ -8957,6 +9263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 0
+  nextRoom: {fileID: 2142743479}
 --- !u!1 &1639002952
 GameObject:
   m_ObjectHideFlags: 0
@@ -9190,6 +9497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 5
+  nextRoom: {fileID: 660041537}
 --- !u!65 &1656703257
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9357,6 +9665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 5
+  nextRoom: {fileID: 660041537}
 --- !u!1 &1675364102
 GameObject:
   m_ObjectHideFlags: 0
@@ -9584,6 +9893,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1716380032}
+  - component: {fileID: 1716380033}
   m_Layer: 0
   m_Name: WaypointHangar3
   m_TagString: Untagged
@@ -9605,6 +9915,20 @@ Transform:
   m_Father: {fileID: 1307477359}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1716380033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716380031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b22c179fe36784b9b6e6a2046d7f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLocationIndex: 5
+  nextRoom: {fileID: 660041537}
 --- !u!1 &1719243727
 GameObject:
   m_ObjectHideFlags: 0
@@ -9742,6 +10066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 7
+  nextRoom: {fileID: 456570318}
 --- !u!1 &1742808848
 GameObject:
   m_ObjectHideFlags: 0
@@ -10002,6 +10327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1805049611}
+  - component: {fileID: 1805049612}
   m_Layer: 0
   m_Name: WaypointFromMEToAtrium
   m_TagString: Untagged
@@ -10023,6 +10349,20 @@ Transform:
   m_Father: {fileID: 1208974318}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1805049612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805049610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b22c179fe36784b9b6e6a2046d7f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLocationIndex: 1
+  nextRoom: {fileID: 614268359}
 --- !u!1 &1810208010
 GameObject:
   m_ObjectHideFlags: 0
@@ -10314,6 +10654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 1
+  nextRoom: {fileID: 614268359}
 --- !u!1 &1874065254
 GameObject:
   m_ObjectHideFlags: 0
@@ -10551,7 +10892,7 @@ MonoBehaviour:
   - {fileID: 1988624831}
   waypointTo: {fileID: 6983540}
   waypointFro: {fileID: 6983540}
-  room: {fileID: 0}
+  room: {fileID: 2142743479}
   travelTime: 0.5
   traveling: 0
   laserPrefab: {fileID: 7944663641039822433, guid: 4c7082da95606584188714f678c66591,
@@ -10708,6 +11049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 1
+  nextRoom: {fileID: 614268359}
 --- !u!1 &1928499306
 GameObject:
   m_ObjectHideFlags: 0
@@ -11134,6 +11476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 1
+  nextRoom: {fileID: 614268359}
 --- !u!1 &1992366225
 GameObject:
   m_ObjectHideFlags: 0
@@ -11334,6 +11677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 2
+  nextRoom: {fileID: 1208974319}
 --- !u!1 &1999663013
 GameObject:
   m_ObjectHideFlags: 0
@@ -11720,6 +12064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLocationIndex: 6
+  nextRoom: {fileID: 1252514519}
 --- !u!1 &2081073618
 GameObject:
   m_ObjectHideFlags: 0
@@ -12006,6 +12351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2142743478}
+  - component: {fileID: 2142743479}
   m_Layer: 0
   m_Name: CommandRoom
   m_TagString: Untagged
@@ -12032,3 +12378,25 @@ Transform:
   m_Father: {fileID: 1381934054}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2142743479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142743477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540aaac5412c73348a27e28d351ee283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomID: 0
+  connectedRooms: []
+  nextRoom: {fileID: 0}
+  prevRoom: {fileID: 0}
+  exits: []
+  enemiesInRoom: []
+  alliesInRoom: []
+  pathway: []
+  cameraTransform: {fileID: 687619065}
+  sentries: []

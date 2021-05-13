@@ -33,12 +33,16 @@ public class Sentry : MonoBehaviour
             timer += Time.deltaTime;
 
             if (timer >= attackRechargeTime) {
-                timer = 0;
+               
                 GameObject target = room.TargetEnemy();
-                Vector3 targetV = target.transform.position + targetOffset;
-                Vector3 start = transform.position + laserSpawnOffset;
-                Laser lazor = Instantiate(laserPrefab, start, transform.rotation).GetComponent<Laser>();
-                lazor.Initiate(start, targetV, target, damage, false, room);
+                
+                if (target) {
+                    timer = 0;
+                    Vector3 targetV = target.transform.position + targetOffset;
+                    Vector3 start = transform.position + laserSpawnOffset;
+                    Laser lazor = Instantiate(laserPrefab, start, transform.rotation).GetComponent<Laser>();
+                    lazor.Initiate(start, targetV, target, damage, false, room);
+                }
 
 
             }

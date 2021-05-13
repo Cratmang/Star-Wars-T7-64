@@ -5,34 +5,60 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     public int roomID;
+    public Room[] connectedRooms;
     public Room nextRoom, prevRoom;
+    public Door[] exits;
 
     public List<GameObject> enemiesInRoom;
     public List<GameObject> alliesInRoom;
     public List<GameObject> pathway;
 
+    public Transform cameraTransform;
+
     public GameObject[] sentries;
 
+    public bool Equals(Room r) {
+        if (roomID == r.roomID) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     //This is for the enemies
-    public List<GameObject> EnterRoom(GameObject newEn) {
+    //Returns the path for the enemies to follow through the room.
+    public List<GameObject> EnterRoom(GameObject newEn, bool escaping) {
         enemiesInRoom.Add(newEn);
         newEn.GetComponent<Enemy>().room = this;
-        return pathway;
-    }
-    public Room LeaveRoom(GameObject byeEn, bool escaping) {
-        enemiesInRoom.Remove(byeEn);
+        
         if (escaping) {
+            List<GameObject> escapePath = new List<GameObject>();
+            escapePath.AddRange(pathway); // From my understanding of the example, Reverse() does not simply return a reversed list - it reverses the original list, which is something I don't want.
+            escapePath.Reverse();
+            return escapePath;
+        } else {
+            return pathway;
+        }
+    }
+    public void LeaveRoom(GameObject byeEn, bool escaping) {
+        enemiesInRoom.Remove(byeEn);
+        /*if (escaping) {
             return prevRoom;
         } else {
             return nextRoom;
-        }
+        }*/
     }
 
     //This is for the player
     public void EnterRoom(T764 them) {
+        them.room.alliesInRoom.Remove(them.gameObject);
+        them.room = this;
         alliesInRoom.Add(them.gameObject);
         //them.roomID = roomID;
     }
+
+
 
 
 
