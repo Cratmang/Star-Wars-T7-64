@@ -154,21 +154,25 @@ public class Enemy : MonoBehaviour {
         //sprite.transform.rotation = Quaternion.AngleAxis(rotationAngle, Vector3.forward);
 
         // Attack!
-        if (attackTimer < attackRecharge) {
-            attackTimer += Time.deltaTime;
-        }
-        if (attackTimer >= attackRecharge) {
+        Ally target = room.TargetAlly();
+        
+        if (target) {
+            if (attackTimer < attackRecharge) {
+                attackTimer += Time.deltaTime;
+            }
+            if (attackTimer >= attackRecharge) {
+                attackTimer = 0;
+                Vector3 targetV = target.transform.position + targetOffset;
+                Vector3 start = transform.position + laserSpawnOffset;
+                Laser lazor = Instantiate(laserPrefab, start, transform.rotation).GetComponent<Laser>();
+                lazor.Initiate(start, targetV, target.gameObject, damage, false, room);
+            }
+        } else {
             attackTimer = 0;
-
-            //Get Target!
-            //Right now, the only target is the player.
-            //TO-DO: Add code to detect if player or turrets are in the same room.
-            GameObject target = GameObject.Find("T7-64");
-            Vector3 targetV = target.transform.position + targetOffset;
-            Vector3 start = transform.position + laserSpawnOffset;
-            Laser lazor = Instantiate(laserPrefab, start, transform.rotation).GetComponent<Laser>();
-            lazor.Initiate(start, targetV, target, damage, false, room);
         }
+
+
+        
         
     }
 
@@ -191,6 +195,7 @@ public class Enemy : MonoBehaviour {
             loot.Initiate();
         }
 
+        room.enemiesInRoom.Remove(this);
         Destroy(gameObject);
     }
 

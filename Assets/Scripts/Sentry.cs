@@ -2,23 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sentry : MonoBehaviour
+public class Sentry : Ally
 {
-    public int hp;
-    public int damage;
-    public GameObject laserPrefab;
-
-    public Vector3 targetOffset, laserSpawnOffset;
-
-    public float attackRechargeTime;
-    float timer = 0;
-
-    public GameManager gm;
-    public Room room;
-
-    //public int roomID;
-
-
+    public Vector3 targetOffset;
     
     // Start is called before the first frame update
     void Start()
@@ -26,26 +12,31 @@ public class Sentry : MonoBehaviour
         
     }
 
+    public void Initiate(Room r) {
+        health = maxHealth;
+        room = r;
+
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (timer < attackRechargeTime) {
-            timer += Time.deltaTime;
+        if (laserTimer < laserRechargeTime) {
+            laserTimer += Time.deltaTime;
+        }
 
-            if (timer >= attackRechargeTime) {
+        if (laserTimer >= laserRechargeTime) {
 
-                timer = 0;
-                /*Enemy target = room.TargetEnemy();
+            //timer = 0;
                 
-                if (target) {
-                    timer = 0;
-                    Vector3 targetV = target.transform.position + targetOffset;
-                    Vector3 start = transform.position + laserSpawnOffset;
-                    Laser lazor = Instantiate(laserPrefab, start, transform.rotation).GetComponent<Laser>();
-                    lazor.Initiate(start, targetV, target.gameObject, damage, false, room);
-                }
-                */
-
+            Enemy target = room.TargetEnemy();
+                
+            if (target) {
+                laserTimer = 0;
+                Vector3 targetV = target.transform.position + targetOffset;
+                Vector3 start = transform.position + laserSpawnOffset;
+                Laser lazor = Instantiate(laserPrefab, start, transform.rotation).GetComponent<Laser>();
+                lazor.Initiate(start, targetV, target.gameObject, damage, true, room);        
             }
         }    
     }

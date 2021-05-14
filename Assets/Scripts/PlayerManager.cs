@@ -141,11 +141,12 @@ public class PlayerManager : MonoBehaviour
                         //SwitchPosition(nextLocationIndex);
 
                         transform.position = passage.nextRoom.cameraTransform.position;
-                        transform.rotation = passage.nextRoom.cameraTransform.rotation;
 
                         //Give Previous location and Next Location to T7-64
+                        tee7.room.alliesInRoom.Remove(tee7);
                         tee7.TravelTo(passage.nextRoom.roomID);
                         tee7.room = passage.nextRoom;
+                        tee7.room.alliesInRoom.Add(tee7);
 
                         //prevLocationIndex = nextLocationIndex;
                         LockInput();

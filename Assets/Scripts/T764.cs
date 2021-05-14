@@ -2,31 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class T764 : MonoBehaviour
+public class T764 : Ally
 {
-    public int hp = 6;
-
+    
     public PlayerManager pm;
 
     public List<Transform> standHere;
     public List<Transform> travelWaypoints;
     public Transform waypointTo, waypointFro;
-    public Room room;
-    //Refer to list of CameraPos
-
-
+    
     public float travelTime = 0.5f;
     public bool traveling = false;
     float timer;
 
-    public GameObject laserPrefab;
-    public int damage;
-    public Vector3 laserSpawnOffset;
-    public float laserRechargeTime;
-    float laserTimer = 0;
-
-
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -186,11 +174,8 @@ public class T764 : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int d) {
-        hp -= d;
-        if (hp <= 0) {
-            // Commit die
-        }
+    protected override void Die() {
+        Debug.Log("Dead, you should be.");
     }
 
 }

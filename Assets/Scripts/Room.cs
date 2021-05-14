@@ -5,12 +5,9 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     public int roomID;
-    public Room[] connectedRooms;
-    public Room nextRoom, prevRoom;
-    public Door[] exits;
 
     public List<Enemy> enemiesInRoom;
-    public List<GameObject> alliesInRoom;
+    public List<Ally> alliesInRoom;
     public List<GameObject> pathway;
 
     public Transform cameraTransform;
@@ -92,7 +89,7 @@ public class Room : MonoBehaviour
         } else {
             return false;
         }
-    }
+    }*/
 
 
     public Enemy TargetEnemy() {
@@ -104,12 +101,12 @@ public class Room : MonoBehaviour
         }
     }
 
-    public GameObject TargetAlly() {
+    public Ally TargetAlly() {
         if (alliesInRoom.Count == 0) {
             return null;
         } else {
             int i = Random.Range(0, alliesInRoom.Count);
             return alliesInRoom[i];
         }
-    }*/
+    }
 }

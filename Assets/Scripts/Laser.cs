@@ -70,9 +70,21 @@ public class Laser : MonoBehaviour
 
         if (gameObject.transform.position.Equals(targetV)) {
             if (target) { //Check to see if the target hasn't already been destroyed before the bullet landed.
+                bool hit = false;
+                //Check if the target is still in the same room.
+                if (friendly) { 
+                    Enemy T = target.GetComponent<Enemy>();
+                    if (T.room.Equals(room)) {
+                        hit = true;
+                    }
+                } else {
+                    Ally T = target.GetComponent<Ally>();
+                    if (T.room.Equals(room)) {
+                        hit = true;
+                    }
+                }
 
-                //TO-DO: Check if the target is still in the same room.
-                target.SendMessage("TakeDamage", damage);
+                if (hit) target.SendMessage("TakeDamage", damage);
             }
             Destroy(this.gameObject);
         }
