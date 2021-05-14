@@ -35,16 +35,16 @@ public class Enemy : MonoBehaviour {
     public float currentTimeOnPath;
 
     public Room room;
+    public int spawnID;
+    /* 0 = Came from Hangar Bay
+     * 1 = Came from Mine
+     * 2 = Came from Vent
+     */
 
-    /*public Enemy Clone(Room r, GameManager g) => new Enemy {
-        health = this.health,
-        maxHealth = this.maxHealth,
-        waypoints = r.pathway,
-        room = r,
-        gm = g,
-        lastWaypointSwitchTime = Time.time
-    };*/
-
+    public int targetVault = 3;
+    /* 0-2 = Vault 64_
+     * 3 = undecided
+     */ 
 
     void Awake()
     {
@@ -64,28 +64,6 @@ public class Enemy : MonoBehaviour {
         }
         return distance;
     }
-
-    //public void Initiate() {
-        //gm = game;
-    //    lastWaypointSwitchTime = Time.time;
-        //waypoints = pw;
-    //}
-
-    /*public void Initiate(GameObject[] pw, List<int> sw, GameManager game)
-    {
-        gm = game;
-        lastWaypointSwitchTime = Time.time;
-        waypoints = pw;
-        safeWaypoints = sw;
-        startPosition = waypoints[currentWaypoint].transform.position;
-        endPosition = waypoints[currentWaypoint + 1].transform.position;
-        Vector2 vectorToTarget = waypoints[currentWaypoint + 1].transform.position - transform.position;
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        health = maxHealth[level];
-        moving = true;
-
-    }*/
 
     public void Initiate(Room spawnRoom, GameManager gm, int startPoint)
     {
@@ -128,7 +106,7 @@ public class Enemy : MonoBehaviour {
 
         if (gameObject.transform.position.Equals(endPosition))
         {
-            if (currentWaypoint < room.pathway.Count - 2) {
+            if (currentWaypoint < room.GetPathway(this).Count - 2) {
                 currentWaypoint++;
 
                 /*//Add check if the next Waypoint is in the next room. If yes, teleport to the next room.
@@ -139,22 +117,25 @@ public class Enemy : MonoBehaviour {
 
             } else {//Crap! They've reached the end!
                 //TO-DO: Enemy needs variable for when they're actively escaping. Just a simple boolean.
-                Door d = room.pathway[currentWaypoint+1].GetComponent<Door>();
+               
+                
+                Door d = room.GetPathway(this)[currentWaypoint+1].GetComponent<Door>();
 
                 if (d) {
-                    currentWaypoint = 0;
-                    //waypoints.Clear();
+                    room.enemiesInRoom.Remove(this);
                     room = d.nextRoom;
-                    transform.position = room.pathway[0].transform.position;
-                    //waypoints.AddRange(room.pathway);
-                    //waypoints.AddRange(d.nextRoom.EnterRoom(gameObject, false));
+                    transform.position = room.GetPathway(this)[0].transform.position;
+                    room.enemiesInRoom.Add(this);
+                    currentWaypoint = 0;
+
                 } else {
                     Destroy(gameObject);
                 }
             }
 
-            startPosition = room.pathway[currentWaypoint].transform.position;
-            endPosition = room.pathway[currentWaypoint + 1].transform.position;
+            startPosition = room.GetPathway(this)[currentWaypoint].transform.position;
+            endPosition = room.GetPathway(this)[currentWaypoint + 1].transform.position;
+            endPosition = room.GetPathway(this)[currentWaypoint + 1].transform.position;
             lastWaypointSwitchTime = Time.time;
 
         }
@@ -191,6 +172,7 @@ public class Enemy : MonoBehaviour {
         
     }
 
+
     public void TakeDamage(int ow) {
         health -= ow;
         if (health <= 0) {
@@ -207,10 +189,6 @@ public class Enemy : MonoBehaviour {
             int d = (int)Random.Range(0, drops.Length);
             Resource loot = Instantiate(drops[d], lootSpawn, transform.rotation).GetComponent<Resource>();
             loot.Initiate();
-            /*float xForce = Random.Range(-2.5F, 2.5F);
-            float yForce = Random.Range( 0.1F, 5.0F);
-            float zForce = Random.Range(-2.5F, 2.5F);
-            loot.GetComponent<Rigidbody>().velocity = (new Vector3(xForce, yForce, zForce));*/
         }
 
         Destroy(gameObject);

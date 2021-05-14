@@ -25,6 +25,9 @@ public class Room : MonoBehaviour
         }
     }
 
+    public virtual List<GameObject> GetPathway(Enemy e) {
+        return pathway;
+    }
 
     //This is for the enemies
     //Returns the path for the enemies to follow through the room.

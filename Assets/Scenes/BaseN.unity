@@ -9808,6 +9808,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1699506862}
+  - component: {fileID: 1699506863}
   m_Layer: 0
   m_Name: WaypointFromAtriumToHallB
   m_TagString: Untagged
@@ -9829,6 +9830,20 @@ Transform:
   m_Father: {fileID: 614268358}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1699506863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699506861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b22c179fe36784b9b6e6a2046d7f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLocationIndex: 5
+  nextRoom: {fileID: 828348016}
 --- !u!1 &1706449129
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,8 +22,10 @@ public class Atrium : Room
         }
     }*/
 
-    new public List<GameObject> pathway() {
+    public override List<GameObject> GetPathway(Enemy e) {
         //Need to determine path for enemy
         return pathwayHallToVault1;
     }
+
+
 }
