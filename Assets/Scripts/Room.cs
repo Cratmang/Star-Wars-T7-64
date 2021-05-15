@@ -12,7 +12,9 @@ public class Room : MonoBehaviour
 
     public Transform cameraTransform;
 
-    public GameObject[] sentries;
+    public Transform[] sentryTransforms;
+    private GameObject[] sentries;
+    
 
     public bool Equals(Room r) {
         if (roomID == r.roomID) {
@@ -26,70 +28,18 @@ public class Room : MonoBehaviour
         return pathway;
     }
 
-    //This is for the enemies
-    //Returns the path for the enemies to follow through the room.
-    /*public List<GameObject> EnterRoom(GameObject newEn, bool escaping) {
-        enemiesInRoom.Add(newEn);
-        newEn.GetComponent<Enemy>().room.LeaveRoom(newEn);
-        newEn.GetComponent<Enemy>().room = this;
-        
-        if (escaping) {
-            List<GameObject> escapePath = new List<GameObject>();
-            escapePath.AddRange(pathway); // From my understanding of the example, Reverse() does not simply return a reversed list - it reverses the original list, which is something I don't want.
-            escapePath.Reverse();
-            return escapePath;
-        } else {
-            return pathway;
-        }
-    }
-    public void LeaveRoom(GameObject byeEn) {
-        enemiesInRoom.Remove(byeEn);
-        Debug.Log("Welcome, friend!");
-    }*/
-
-    /*public List<GameObject> EnemySpawning(Enemy en) {
-        enemiesInRoom.Add(en);
-        en.room = this;
-        return pathway;
-    }
-
-
-
-    //This is for the player
-    public void EnterRoom(T764 them) {
-        them.room.alliesInRoom.Remove(them.gameObject);
-        them.room = this;
-        alliesInRoom.Add(them.gameObject);
-        //them.roomID = roomID;
-    }
-
-
-
-
-
-    public bool IsInRoom(GameObject thing, bool friend) {
-        if (!friend) {
-            if (enemiesInRoom.Contains(thing.GetComponent<Enemy>())) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            if (alliesInRoom.Contains(thing)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
-
-    public bool IsInRoom(Enemy thing) {
-        if (thing.room.Equals(this)) {
-            return true;
-        } else {
+    public bool PlaceSentry(GameObject sen) {
+        int g = System.Array.IndexOf(sentries, null);
+        if (g == -1) { //If my understanding of Array.IndexOf is correct, then it SHOULD return -1 if the index is full. But I could be wrong...
             return false;
+        } else {
+            GameObject newSen = Instantiate(sen, sentryTransforms[g]);
+            sentries[g] = newSen;
+            return true;
         }
-    }*/
+
+    }
+
 
 
     public Enemy TargetEnemy() {

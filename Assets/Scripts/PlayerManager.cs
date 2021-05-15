@@ -48,17 +48,27 @@ public class PlayerManager : MonoBehaviour
 
     public Text[] resourceCounters;
     private int[] resourceCount = new int[6];
+    /* 0 = Kyber Crystals
+     * 1 = Scrap
+     * 2 = Circuits
+     * 3 = Oil
+     * 4 = Fuel Cells
+     * 5 = Metal Ore
+     */
+
+    public GameObject[] sentryPrefabs = new GameObject[3];
+    private int[] sentriesPocketed = new int[3];
+    /* 0 = Scrap Turret
+     * 1 = Standard Turret
+     * 2 = Phaux Jedi
+     */
 
     float timer;
     public float frameTime, interactTime;
     GameObject interactTarget;
 
    
-
-
     private void Start() {
-        //gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-
         SwitchPosition(prevLocationIndex);
     }
 
@@ -93,7 +103,6 @@ public class PlayerManager : MonoBehaviour
                 if (passage) {
                     Cursor.SetCursor(cursorGoTo, hotSpot, cursorMode);
                     f = true;
-
                 }
 
                 Resource re = hit.transform.gameObject.GetComponent<Resource>();
@@ -165,32 +174,23 @@ public class PlayerManager : MonoBehaviour
                         mining = true;
                         interactTarget = ov.gameObject;
                     }
-
                 }
             }
         }
     }
 
+    public void PlaceTurret(int type) {
 
-
-    /*int CurrentLockedFrame(bool dia) {
-        timer += Time.deltaTime;
-        float maxTime;
-
-        if (dia) {
-            maxTime = frameTime * cursorDia.Length;
+        if (sentriesPocketed[type] > 0) {
+            if (tee7.room.PlaceSentry(sentryPrefabs[type])) {
+                sentriesPocketed[type]--;
+            } else {
+                Debug.Log("Here = cannot place sentry.");
+            }
         } else {
-            maxTime = frameTime * cursorLocked.Length;
+            Debug.Log("Requested sentry = 0 available.");
         }
-
-        if (timer >= maxTime) {
-            timer = 0;
-        }
-
-        int frameNum = Mathf.FloorToInt(timer / frameTime);
-        return frameNum;
-
-    }*/
+    } 
 
     public void LockInput(bool dia = false) {
         locked = true;
@@ -202,6 +202,5 @@ public class PlayerManager : MonoBehaviour
 
     public void SwitchPosition(int index) {
         transform.position = cameraPos[index].position;
-        transform.rotation = cameraPos[index].rotation;
     }
 }
