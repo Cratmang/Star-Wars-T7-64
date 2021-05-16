@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour
 
     public Transform[] transforms;
 
-    bool locked = false, mining = false;
+    bool locked = false, mining = false, windowOpen = false;
 
     public Texture2D cursorNormal;
     public Texture2D cursorGoTo;
@@ -58,6 +58,7 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject[] sentryPrefabs = new GameObject[3];
     private int[] sentriesPocketed = new int[3];
+    public GameObject[] sentryButtons = new GameObject[3];
     /* 0 = Scrap Turret
      * 1 = Standard Turret
      * 2 = Phaux Jedi
@@ -67,11 +68,35 @@ public class PlayerManager : MonoBehaviour
     public float frameTime, interactTime;
     GameObject interactTarget;
 
-   
-    private void Start() {
-        SwitchPosition(prevLocationIndex);
+    public GameObject craftingWindow;
+
+    public void OpenWindow(GameObject window) {
+        window.SetActive(true);
+        windowOpen = true;
+    }
+    public void CloseWindow(GameObject window) {
+        window.SetActive(false);
+        windowOpen = false;
     }
 
+    private void Start() {
+        //SwitchPosition(0);
+        //In case I somehow make this mistake again, these statements set the POSITION, then the ROTATION of the camera.
+        //  If they look the same, it's because a) they have the same number of characters, and b) your brain has enabled
+        //  dyslexic mode.
+        transform.position = tee7.room.cameraTransform.position;
+        transform.rotation = tee7.room.cameraTransform.rotation;
+        UpdateTurretCounter(0);
+    }
+
+    void UpdateTurretCounter(int i) {
+        if (sentriesPocketed[i] <= 0) {
+            sentryButtons[i].SetActive(false);
+        } else {
+            sentryButtons[i].SetActive(true);
+            sentryButtons[i].GetComponentInChildren<Text>().text = sentriesPocketed[i].ToString();
+        }
+    }
 
     // Update is called once per frame
     void Update() {
@@ -93,90 +118,143 @@ public class PlayerManager : MonoBehaviour
 
         } else {
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            bool f = false;
+            if (!windowOpen) {
 
-               
-            if (Physics.Raycast(ray, out hit)) {
-                bool f = false;
-                Door passage = hit.transform.gameObject.GetComponent<Door>();
-                if (passage) {
-                    Cursor.SetCursor(cursorGoTo, hotSpot, cursorMode);
-                    f = true;
-                }
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
 
-                Resource re = hit.transform.gameObject.GetComponent<Resource>();
-                if (re) {
-                    if (re.ripe) {
-                        //Gather Resources
-                        resourceCount[re.indexID]++;
-                        resourceCounters[re.indexID].text = resourceCount[re.indexID].ToString();
-                        Destroy(re.gameObject);
-                        //TO-DO: Add animation of resource being added to inventory.
-                    }
-                } 
-                
-                Enemy en = hit.transform.gameObject.GetComponent<Enemy>();
-                if (en) {
-                    Cursor.SetCursor(cursorShoot, targetHotspot, cursorMode);
-                    f = true;
-
-                }
-
-                OreVein ov = hit.transform.gameObject.GetComponent<OreVein>();
-                if (ov) {
-                    // TO-DO: Draw mining cursor
-                    Cursor.SetCursor(cursorGoTo, hotSpot, cursorMode);
-                    f = true;
-                }
-
-                if (!f) {             
-                    //TO DO - Interactable object, enemy, etc. 
-                    Cursor.SetCursor(cursorNormal, hotSpot, cursorMode);
-                }
-
-            } else {
-                Cursor.SetCursor(cursorNormal, hotSpot, cursorMode);
-            }
-
-            if (Input.GetMouseButtonDown(0)) {
                 if (Physics.Raycast(ray, out hit)) {
 
-                    //Door to next room
+                    Resource re = hit.transform.gameObject.GetComponent<Resource>();
+                    if (re) {
+                        if (re.ripe) {
+                            //Gather Resources
+                            resourceCount[re.indexID]++;
+                            resourceCounters[re.indexID].text = resourceCount[re.indexID].ToString();
+                            Destroy(re.gameObject);
+                            //TO-DO: Add animation of resource being added to inventory.
+                        }
+                    } 
+                
+                    
                     Door passage = hit.transform.gameObject.GetComponent<Door>();
                     if (passage) {
-
-                        //nextLocationIndex = passage.nextLocationIndex;
-                        //SwitchPosition(nextLocationIndex);
-
-                        transform.position = passage.nextRoom.cameraTransform.position;
-
-                        //Give Previous location and Next Location to T7-64
-                        tee7.room.alliesInRoom.Remove(tee7);
-                        tee7.TravelTo(passage.nextRoom.roomID);
-                        tee7.room = passage.nextRoom;
-                        tee7.room.alliesInRoom.Add(tee7);
-
-                        //prevLocationIndex = nextLocationIndex;
-                        LockInput();
+                        Cursor.SetCursor(cursorGoTo, hotSpot, cursorMode);
+                        f = true;
                     }
-
+                
                     Enemy en = hit.transform.gameObject.GetComponent<Enemy>();
                     if (en) {
-                        tee7.FireLazor(hit.point, hit.transform.gameObject);
+                        Cursor.SetCursor(cursorShoot, targetHotspot, cursorMode);
+                        f = true;
+
                     }
 
                     OreVein ov = hit.transform.gameObject.GetComponent<OreVein>();
                     if (ov) {
-                        LockInput();
-                        interactTime = ov.mineTime;
-                        timer = 0;
-                        mining = true;
-                        interactTarget = ov.gameObject;
+                        // TO-DO: Draw mining cursor
+                        Cursor.SetCursor(cursorGoTo, hotSpot, cursorMode);
+                        f = true;
+                    }
+
+                    Terminal tem = hit.transform.gameObject.GetComponent<Terminal>();
+                    if (tem) {
+                        // TO-DO: Draw terminal interact cursor
+                        Cursor.SetCursor(cursorGoTo, hotSpot, cursorMode);
+                        f = true;
+                    }
+                }
+
+                if (Input.GetMouseButtonDown(0)) {
+                    if (Physics.Raycast(ray, out hit)) {
+
+                        //Door to next room
+                        Door passage = hit.transform.gameObject.GetComponent<Door>();
+                        if (passage) {
+
+                            //nextLocationIndex = passage.nextLocationIndex;
+                            //SwitchPosition(nextLocationIndex);
+
+                            //In case I somehow make this mistake again, these statements set the POSITION, then the ROTATION of the camera.
+                            //  If they look the same, it's because a) they have the same number of characters, and b) your brain has enabled
+                            //  dyslexic mode.
+                            transform.position = passage.nextRoom.cameraTransform.position;
+                            transform.rotation = passage.nextRoom.cameraTransform.rotation;
+
+                            //Give Previous location and Next Location to T7-64
+                            tee7.room.alliesInRoom.Remove(tee7);
+                            tee7.TravelTo(passage.nextRoom.roomID);
+                            tee7.room = passage.nextRoom;
+                            tee7.room.alliesInRoom.Add(tee7);
+
+                            //prevLocationIndex = nextLocationIndex;
+                            LockInput();
+                        }
+
+                        Enemy en = hit.transform.gameObject.GetComponent<Enemy>();
+                        if (en) {
+                            tee7.FireLazor(hit.point, hit.transform.gameObject);
+                        }
+
+                        OreVein ov = hit.transform.gameObject.GetComponent<OreVein>();
+                        if (ov) {
+                            LockInput();
+                            interactTime = ov.mineTime;
+                            timer = 0;
+                            mining = true;
+                            interactTarget = ov.gameObject;
+                        }
                     }
                 }
             }
+
+            //The mouse isn't hovering over anything special.
+            if (!f) {
+                Cursor.SetCursor(cursorNormal, hotSpot, cursorMode);
+            }
         }
+    }
+
+    public void CraftTurret(int type) {
+        int[] cost = new int[6];
+        
+        //Get cost of turret to craft
+        switch (type) {
+            case 0:
+                cost[0] = 0;
+                cost[1] = 4;
+                cost[2] = 2;
+                cost[3] = 0;
+                cost[4] = 0;
+                cost[5] = 0;
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+        }
+
+        //Check if you have the resources to craft the turret
+        bool afford = true;
+        for (int i = 0; i < cost.Length; i++) {
+            if (cost[i] > resourceCount[i]) {
+                afford = false;
+            }
+        }
+
+        //If yes, craft the turret requested.
+        if (afford) {
+            for (int i = 0; i < cost.Length; i++) {
+                resourceCount[i] -= cost[i];
+                resourceCounters[i].text = resourceCount[i].ToString();
+            }
+            sentriesPocketed[type]++;
+            UpdateTurretCounter(type);
+        } else {
+            Debug.Log(sentryPrefabs[type].name + " = cannot craft. // Resources = insufficient quantity.");
+        }
+
     }
 
     public void PlaceTurret(int type) {
@@ -184,6 +262,7 @@ public class PlayerManager : MonoBehaviour
         if (sentriesPocketed[type] > 0) {
             if (tee7.room.PlaceSentry(sentryPrefabs[type])) {
                 sentriesPocketed[type]--;
+                UpdateTurretCounter(type);
             } else {
                 Debug.Log("Here = cannot place sentry.");
             }
@@ -202,5 +281,6 @@ public class PlayerManager : MonoBehaviour
 
     public void SwitchPosition(int index) {
         transform.position = cameraPos[index].position;
+        transform.rotation = cameraPos[index].rotation;
     }
 }

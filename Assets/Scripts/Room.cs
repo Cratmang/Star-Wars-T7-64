@@ -13,7 +13,7 @@ public class Room : MonoBehaviour
     public Transform cameraTransform;
 
     public Transform[] sentryTransforms;
-    private GameObject[] sentries;
+    private List<GameObject> sentries = new List<GameObject>();
     
 
     public bool Equals(Room r) {
@@ -29,18 +29,16 @@ public class Room : MonoBehaviour
     }
 
     public bool PlaceSentry(GameObject sen) {
-        int g = System.Array.IndexOf(sentries, null);
-        if (g == -1) { //If my understanding of Array.IndexOf is correct, then it SHOULD return -1 if the index is full. But I could be wrong...
+        if (sentries.Count >= sentryTransforms.Length) { //If my understanding of Array.IndexOf is correct, then it SHOULD return -1 if the index is full. But I could be wrong...
             return false;
         } else {
+            int g = sentries.Count;
             GameObject newSen = Instantiate(sen, sentryTransforms[g]);
-            sentries[g] = newSen;
+            newSen.GetComponent<Sentry>().Initiate(this);
+            sentries.Add(newSen);
             return true;
         }
-
     }
-
-
 
     public Enemy TargetEnemy() {
         if (enemiesInRoom.Count == 0) {
