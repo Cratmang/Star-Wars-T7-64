@@ -863,6 +863,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 138097588}
+  - component: {fileID: 138097589}
   m_Layer: 0
   m_Name: EnemyWaypointVault1
   m_TagString: Untagged
@@ -884,6 +885,20 @@ Transform:
   m_Father: {fileID: 1257608213}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &138097589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138097587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b22c179fe36784b9b6e6a2046d7f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLocationIndex: 1
+  nextRoom: {fileID: 614268359}
 --- !u!1 &147726244
 GameObject:
   m_ObjectHideFlags: 0
@@ -2993,7 +3008,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456570316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.74, y: -12.4, z: 1.2999997}
+  m_LocalPosition: {x: -17.74, y: -12.4, z: 39.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 555670960}
@@ -3042,6 +3057,10 @@ MonoBehaviour:
   - {fileID: 1212478582}
   - {fileID: 804271729}
   - {fileID: 645925124}
+  loot: 6
+  looted: 0
+  lootPrefab: {fileID: 8853143392248486999, guid: d5d807c94509a944b808ae123ea7b6af,
+    type: 3}
 --- !u!1 &461073945
 GameObject:
   m_ObjectHideFlags: 0
@@ -3812,7 +3831,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536602194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.2799997, y: -12.4, z: 1.2999997}
+  m_LocalPosition: {x: -5.2799997, y: -12.4, z: 39.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1867878489}
@@ -3861,6 +3880,10 @@ MonoBehaviour:
   - {fileID: 1310515860}
   - {fileID: 100271444}
   - {fileID: 1551740628}
+  loot: 6
+  looted: 0
+  lootPrefab: {fileID: 8601829868805809371, guid: baf1add6bf41492479c323e0828e2234,
+    type: 3}
 --- !u!1 &537145470
 GameObject:
   m_ObjectHideFlags: 0
@@ -6463,89 +6486,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04f12a3552a8f144bb74edc132a723ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveInfo: {fileID: 0}
   hangarBay: {fileID: 1252514519}
   mine: {fileID: 928394819}
   vent: {fileID: 828348016}
   mineSpawnActive: 0
   ventSpawnActive: 0
-  enemyHangarPath:
-  - {fileID: 1567250045}
-  - {fileID: 939905056}
-  - {fileID: 1716380032}
-  - {fileID: 0}
-  - {fileID: 1550150161}
-  - {fileID: 894959142}
-  - {fileID: 1056813010}
-  - {fileID: 0}
-  - {fileID: 972289655}
-  - {fileID: 468334049}
-  - {fileID: 1608910435}
-  - {fileID: 1849468393}
-  - {fileID: 0}
-  - {fileID: 1699506862}
-  enemyVentPath:
-  - {fileID: 128311231}
-  - {fileID: 1373520939}
-  - {fileID: 1849468393}
-  - {fileID: 0}
-  - {fileID: 1699506862}
-  enemyVault1PathHangar:
-  - {fileID: 1186431650}
-  enemyVault2PathHangar:
-  - {fileID: 1186431650}
-  - {fileID: 1679286082}
-  enemyMinePath:
-  - {fileID: 2009987145}
-  - {fileID: 1874065255}
-  - {fileID: 1810208011}
-  - {fileID: 2110687608}
-  - {fileID: 1288300336}
-  - {fileID: 0}
-  - {fileID: 465796834}
-  - {fileID: 1046376539}
-  - {fileID: 134666493}
-  - {fileID: 1805049611}
-  - {fileID: 0}
-  - {fileID: 670265823}
-  enemyVault0PathMine:
-  - {fileID: 1679286082}
-  - {fileID: 1186431650}
-  enemyVault1PathMine:
-  - {fileID: 1679286082}
-  enemyVault2PathMine:
-  - {fileID: 579431981}
-  enemyVault0Path:
-  - {fileID: 1142250431}
-  - {fileID: 0}
-  - {fileID: 1921468743}
-  - {fileID: 2109850359}
-  - {fileID: 729470752}
-  - {fileID: 1478884803}
-  - {fileID: 768117177}
-  enemyVault1Path:
-  - {fileID: 1999663014}
-  - {fileID: 0}
-  - {fileID: 1651761319}
-  - {fileID: 786026783}
-  - {fileID: 1396855272}
-  - {fileID: 983848271}
-  - {fileID: 1093739830}
-  enemyVault2Path:
-  - {fileID: 158272648}
-  - {fileID: 0}
-  - {fileID: 138097588}
-  - {fileID: 182067389}
-  - {fileID: 1862222089}
-  - {fileID: 1719243728}
-  - {fileID: 2053709234}
-  enemyEscapePath0: []
-  enemyEscapePath1: []
-  enemyEscapePath2: []
-  enemyEscapePathToTheChopper: []
+  mineSpawnWave: 0
+  ventSpawnWave: 0
+  vaults:
+  - {fileID: 456570318}
+  - {fileID: 536602196}
+  - {fileID: 1010989697}
   battleDroid: {fileID: 7211825461757308299, guid: d6ca614c6b61bba4797d36c272973ef4,
     type: 3}
   spawnTime: 3
   enemies: []
+  wave: 0
 --- !u!4 &867232011
 Transform:
   m_ObjectHideFlags: 0
@@ -7466,6 +7423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 972289655}
+  - component: {fileID: 972289656}
   m_Layer: 0
   m_Name: EnemyWaypointHB1
   m_TagString: Untagged
@@ -7487,6 +7445,20 @@ Transform:
   m_Father: {fileID: 1971794503}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &972289656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972289654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b22c179fe36784b9b6e6a2046d7f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLocationIndex: 5
+  nextRoom: {fileID: 660041537}
 --- !u!1 &983848270
 GameObject:
   m_ObjectHideFlags: 0
@@ -7572,7 +7544,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010989695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.5, y: -12.4, z: 1.3}
+  m_LocalPosition: {x: 5.5, y: -12.4, z: 39.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1988624831}
@@ -7621,6 +7593,10 @@ MonoBehaviour:
   - {fileID: 1079310692}
   - {fileID: 1670523123}
   - {fileID: 392150494}
+  loot: 6
+  looted: 0
+  lootPrefab: {fileID: 2627214040365134817, guid: 1f359bf0a6221cc43ac2717230978a86,
+    type: 3}
 --- !u!1 &1022854137
 GameObject:
   m_ObjectHideFlags: 0
@@ -10974,7 +10950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b22c179fe36784b9b6e6a2046d7f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLocationIndex: 0
+  nextLocationIndex: 6
   nextRoom: {fileID: 1252514519}
 --- !u!1 &1551740627
 GameObject:
@@ -11736,6 +11712,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1651761319}
+  - component: {fileID: 1651761320}
   m_Layer: 0
   m_Name: EnemyWaypointVault1
   m_TagString: Untagged
@@ -11757,6 +11734,20 @@ Transform:
   m_Father: {fileID: 1260498838}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1651761320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651761318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b22c179fe36784b9b6e6a2046d7f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLocationIndex: 1
+  nextRoom: {fileID: 614268359}
 --- !u!1 &1654194918
 GameObject:
   m_ObjectHideFlags: 0
@@ -13757,6 +13748,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1921468743}
+  - component: {fileID: 1921468744}
   m_Layer: 0
   m_Name: EnemyWaypointVault1
   m_TagString: Untagged
@@ -13778,6 +13770,20 @@ Transform:
   m_Father: {fileID: 1679193384}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1921468744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921468742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b22c179fe36784b9b6e6a2046d7f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLocationIndex: 1
+  nextRoom: {fileID: 614268359}
 --- !u!1 &1926733647
 GameObject:
   m_ObjectHideFlags: 0

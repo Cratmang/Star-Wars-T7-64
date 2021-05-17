@@ -13,11 +13,10 @@ public class Enemy : MonoBehaviour {
     public float maxHealth;
     protected GameManager gm;
     public List<GameObject> waypoints;
-    public List<int> safeWaypoints;
     public int currentWaypoint = 0;
     public float lastWaypointSwitchTime;
     public float speed = 1.0f;
-    public bool moving;
+    public bool escaping;
 
     //Gun attack 
     public GameObject laserPrefab;
@@ -41,14 +40,17 @@ public class Enemy : MonoBehaviour {
      * 2 = Came from Vent
      */
 
-    public int targetVault = 3;
-    /* 0-2 = Vault 64_
-     * 3 = undecided
-     */ 
+    public int targetVault;
+    bool hasLoot;
+    public Transform lootHoldTransform;
+    GameObject loot;
+    
 
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        //lootHoldTransform = gameObject.GetComponentInChildren<Transform>();
     }
 
 
@@ -65,31 +67,24 @@ public class Enemy : MonoBehaviour {
         return distance;
     }
 
-    public void Initiate(Room spawnRoom, GameManager gm, int startPoint)
+    public void Initiate(Room spawnRoom, GameManager gm, int sID)
     {
         this.gm = gm;
         lastWaypointSwitchTime = Time.time;
         room = spawnRoom;
-        //waypoints = new List<GameObject>();
-        //waypoints = spawnRoom.pathway;
-        currentWaypoint = startPoint;
+        currentWaypoint = 0;
         startPosition = spawnRoom.pathway[currentWaypoint].transform.position;
         endPosition = spawnRoom.pathway[currentWaypoint + 1].transform.position;
-        /*Vector2 vectorToTarget = waypoints[currentWaypoint + 1].transform.position - transform.position;
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90;*/
-        //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         health = maxHealth;
-        moving = true;
+        escaping = false;
+        spawnID = sID;
+        targetVault = gm.DetermineTargetVault();
     }
-
 
     void Update()
     {
         
-
         //Movement
-        //startPosition = waypoints[currentWaypoint].transform.position;
-        //endPosition = waypoints[currentWaypoint + 1].transform.position;
 
         pathLength = Vector3.Distance(startPosition, endPosition);
         totalTimeForPath = pathLength / speed;//step;
@@ -97,45 +92,79 @@ public class Enemy : MonoBehaviour {
         transform.position = Vector3.Lerp(startPosition, endPosition, currentTimeOnPath / totalTimeForPath);
 
         //TO-DO: Write rotation code to flip sprite when it is walking the opposite direction that it is facing.
-        /// put it in SpriteAlwaysFaceCamera.cs
-        /// 
-        ///Vector3 vectorToTarget = waypoints[currentWaypoint + 1].transform.position - transform.position;
-        //float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90;
-        //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.forward), 0.1F);
-        //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         if (gameObject.transform.position.Equals(endPosition))
         {
-            if (currentWaypoint < room.GetPathway(this).Count - 2) {
+            /*int p;
+            if (escaping) {
+                p = currentWaypoint - 1;
+            } else {
+                p = currentWaypoint + 1;
+            }*/
+
+            if (currentWaypoint < room.GetPathway(this).Count - 2  && !escaping) {
                 currentWaypoint++;
+            } else if (currentWaypoint > 1 && escaping) {
+                currentWaypoint--;
 
-                /*//Add check if the next Waypoint is in the next room. If yes, teleport to the next room.
-                if (!waypoints[currentWaypoint + 1]) {
-                    currentWaypoint += 2;
-                    
-                }*/
+            } else {//They've reached the end of the room!
 
-            } else {//Crap! They've reached the end!
-                //TO-DO: Enemy needs variable for when they're actively escaping. Just a simple boolean.
-               
-                
-                Door d = room.GetPathway(this)[currentWaypoint+1].GetComponent<Door>();
+                Door d;
+                if (escaping) {
+                    d = room.GetPathway(this)[0].GetComponent<Door>();
+
+                } else {
+                    d = room.GetPathway(this)[room.GetPathway(this).Count - 1].GetComponent<Door>();
+                }
 
                 if (d) {
                     room.enemiesInRoom.Remove(this);
                     room = d.nextRoom;
-                    transform.position = room.GetPathway(this)[0].transform.position;
                     room.enemiesInRoom.Add(this);
-                    currentWaypoint = 0;
+                    if (escaping) {
+                        transform.position = room.GetPathway(this)[room.GetPathway(this).Count - 1].transform.position;
+                        currentWaypoint = room.GetPathway(this).Count - 1;
+                    } else {
+                        transform.position = room.GetPathway(this)[0].transform.position;
+                        currentWaypoint = 0;
+                    }
+
+                    
 
                 } else {
-                    Destroy(gameObject);
+                    //You've reached the vault! Or, you're back at the ship!
+                    if (escaping) {
+                        if (hasLoot) {
+                            hasLoot = false;
+                            Destroy(loot);
+                            gm.CheckVaultEmpty(targetVault);
+                        }
+                        hasLoot = false;
+                        escaping = false;
+                        targetVault = gm.DetermineTargetVault();
+                        currentWaypoint = 0;
+                    } else {
+                        spawnID = 0; // All bots will always escape through the Atrium.
+                        Vault v = room.GetComponent<Vault>();
+                        if (v.loot > 0) {
+                            hasLoot = true;
+                            loot = Instantiate(v.lootPrefab, lootHoldTransform);
+                            v.loot--;
+                        }
+                        escaping = true;
+                        currentWaypoint = room.GetPathway(this).Count-1;
+                    }
+                    //Destroy(gameObject);
                 }
             }
 
             startPosition = room.GetPathway(this)[currentWaypoint].transform.position;
-            endPosition = room.GetPathway(this)[currentWaypoint + 1].transform.position;
-            endPosition = room.GetPathway(this)[currentWaypoint + 1].transform.position;
+            if (escaping) {
+                endPosition = room.GetPathway(this)[currentWaypoint-1].transform.position;
+            } else {
+                endPosition = room.GetPathway(this)[currentWaypoint+1].transform.position;
+            }
+            //endPosition = room.GetPathway(this)[p].transform.position;
             lastWaypointSwitchTime = Time.time;
 
         }
@@ -193,6 +222,10 @@ public class Enemy : MonoBehaviour {
             int d = (int)Random.Range(0, drops.Length);
             Resource loot = Instantiate(drops[d], lootSpawn, transform.rotation).GetComponent<Resource>();
             loot.Initiate();
+        }
+
+        if (hasLoot) {
+            gm.ReturnLoot(targetVault);
         }
 
         room.enemiesInRoom.Remove(this);

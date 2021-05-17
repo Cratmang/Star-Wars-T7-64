@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1413233024642178869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8527981307391895084}
+  m_Layer: 0
+  m_Name: LootTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8527981307391895084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413233024642178869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7211825461757308297}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7211825461757308299
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,7 +60,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8527981307391895084}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -73,12 +104,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9c693bbd5c96a554da667f5cfa9d4455, type: 3}
+  m_Sprite: {fileID: -4611289787301675610, guid: 9c693bbd5c96a554da667f5cfa9d4455,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.48}
+  m_Size: {x: 1, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -110,10 +142,10 @@ MonoBehaviour:
   health: 2
   maxHealth: 2
   waypoints: []
-  safeWaypoints: 
+  currentWaypoint: 0
   lastWaypointSwitchTime: 0
   speed: 1.5
-  moving: 0
+  escaping: 0
   laserPrefab: {fileID: 7944663641039822433, guid: 4c7082da95606584188714f678c66591,
     type: 3}
   damage: 1
@@ -122,6 +154,10 @@ MonoBehaviour:
   targetOffset: {x: 0, y: 0.5, z: 0}
   totalTimeForPath: 0
   currentTimeOnPath: 0
+  room: {fileID: 0}
+  spawnID: 0
+  targetVault: 0
+  lootHoldTransform: {fileID: 8527981307391895084}
 --- !u!65 &7211825461757308302
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class Vault : Room
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int loot = 6;
+    public bool looted = false; //This is to indicate that the vault has been looted, AND all enemies with the loot have brought the loot back.
+    public GameObject lootPrefab;
 }
