@@ -5,17 +5,14 @@ using UnityEngine;
 public class HallB : Room
 {
     public List<GameObject> ventPath;
-    
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+    public override List<GameObject> GetPathway(Enemy e) { 
+        if (e.spawnID == 2) { //IT CRAWLED OUT OF THE VENT!
+            return ventPath;
+        } else {
+            return pathway;
+        }
+    
     }
 }

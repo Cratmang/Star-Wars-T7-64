@@ -54,16 +54,16 @@ public class Enemy : MonoBehaviour {
     }
 
 
-    public float distanceToGoal()
+    public float distanceToGoal() //The turrets should probably be using this to determine which robots have roamed the furthest. I think if I decide to use it, I will need to rewrite it.
     {
         float distance = 0;
-        distance += Vector3.Distance(gameObject.transform.position, waypoints[currentWaypoint + 1].transform.position);
+        /*distance += Vector3.Distance(gameObject.transform.position, waypoints[currentWaypoint + 1].transform.position);
         for (int i = currentWaypoint + 1; i < waypoints.Count - 1; i++)
         {
             Vector3 startPosition = waypoints[i].transform.position;
             Vector3 endPosition = waypoints[i + 1].transform.position;
             distance += Vector3.Distance(startPosition, endPosition);
-        }
+        }*/
         return distance;
     }
 
@@ -73,12 +73,12 @@ public class Enemy : MonoBehaviour {
         lastWaypointSwitchTime = Time.time;
         room = spawnRoom;
         currentWaypoint = 0;
-        startPosition = spawnRoom.pathway[currentWaypoint].transform.position;
-        endPosition = spawnRoom.pathway[currentWaypoint + 1].transform.position;
         health = maxHealth;
         escaping = false;
         spawnID = sID;
         targetVault = gm.DetermineTargetVault();
+        startPosition = spawnRoom.GetPathway(this)[currentWaypoint].transform.position;
+        endPosition = spawnRoom.GetPathway(this)[currentWaypoint + 1].transform.position;
     }
 
     void Update()
@@ -229,6 +229,7 @@ public class Enemy : MonoBehaviour {
         }
 
         room.enemiesInRoom.Remove(this);
+        gm.enemies.Remove(this);
         Destroy(gameObject);
     }
 
