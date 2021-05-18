@@ -2,9 +2,9 @@
 |      Star Wars - T7-64      |
 |                             |
 -------------------------------
-Created by Connor Gilhuly, or Cratmang<n/>
-Submission for the <a href="https://itch.io/jam/star-wars-fan-game-jam">Star Wars Fan Game Jam on itch.io</a>. <n/>
-<a href="https://cratmang.itch.io/t7-64">Play on itch.io</a>
+Created by Connor Gilhuly, or Cratmang<br/>
+Submission for the <a href="https://itch.io/jam/star-wars-fan-game-jam">Star Wars Fan Game Jam on itch.io</a>. <br/>
+<a href="https://cratmang.itch.io/t7-64">Play on itch.io</a><br/>
 
 <i>A long time ago, in a galaxy far, far away...</i>
 
