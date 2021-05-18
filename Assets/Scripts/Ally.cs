@@ -12,7 +12,7 @@ public class Ally : MonoBehaviour
     public float laserRechargeTime;
     protected float laserTimer = 0;
 
-    public void TakeDamage(int ow) {
+    public virtual void TakeDamage(int ow) {
         health -= ow;
         if (health <= 0) {
             Die();

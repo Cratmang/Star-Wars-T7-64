@@ -40,8 +40,6 @@ public class PlayerManager : MonoBehaviour
     public Texture2D cursorCraft;
     public Texture2D cursorLocked;
 
-    //public GameManager gm;
-    
     private CursorMode cursorMode = CursorMode.Auto;
     private Vector2 hotSpot = Vector2.zero, targetHotspot = new Vector2(14, 14);
 
@@ -282,5 +280,17 @@ public class PlayerManager : MonoBehaviour
     public void SwitchPosition(int index) {
         transform.position = cameraPos[index].position;
         transform.rotation = cameraPos[index].rotation;
+    }
+
+    public void PowerMiner(AutoMiner am) {
+        
+        if (resourceCount[4] > 0) {
+            resourceCount[4]--;
+            resourceCounters[4].text = resourceCount[4].ToString();
+            am.Power();
+
+        } else {
+            // "Error = no Fuel Rods available"
+        }
     }
 }

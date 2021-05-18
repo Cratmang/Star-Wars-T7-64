@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -59,11 +60,14 @@ public class GameManager : MonoBehaviour
     //Retrieve wave info from file
     public TextAsset waveInfoFile;
     string[] waves;
+    public GameObject nextWaveCounter;
+    Text nextWaveCounterText;
 
     private void Awake() {
         waves = waveInfoFile.text.Split('\n');
         timer = timeBetweenWaves;
         waveInProgress = false;
+        nextWaveCounterText = nextWaveCounter.GetComponentInChildren<Text>();
     }
     //TO DO: Wave counter UI, Time Until Next Wave UI
 
@@ -110,6 +114,7 @@ public class GameManager : MonoBehaviour
                     Enemy newEn = Instantiate(enemiesToSpawn[0], spawnPoint.position, spawnPoint.rotation).GetComponent<Enemy>();
                     newEn.Initiate(spawnRoom, this, spawnID);
                     enemies.Add(newEn);
+                    spawnRoom.enemiesInRoom.Add(newEn);
                     timer = 0;
                     enemiesToSpawn.RemoveAt(0);
 
@@ -124,17 +129,17 @@ public class GameManager : MonoBehaviour
                     //All enemies have been defeated. You've succesfully cleared the wave! Give yourself a pat on the back.
                     waveInProgress = false;
                     timer = timeBetweenWaves;
+                    nextWaveCounterText.text = Mathf.Ceil(timer).ToString();
+                    nextWaveCounter.SetActive(true);
                 }
 
             } else {
 
                 timer -= Time.deltaTime;
-                
-                //Update Time Until Next Wave UI Counter (TO DO)
+                nextWaveCounterText.text = Mathf.Ceil(timer).ToString();
                 
                 if (timer <= 0) {
-                    //Hide Time Until Next Wave
-
+                    nextWaveCounter.SetActive(false);
                     waveInProgress = true;
                     wave++;
                     ParseWave();

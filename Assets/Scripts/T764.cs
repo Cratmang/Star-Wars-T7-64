@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class T764 : Ally
 {
-    
     public PlayerManager pm;
 
     public List<Transform> standHere;
@@ -14,6 +13,8 @@ public class T764 : Ally
     public float travelTime = 0.5f;
     public bool traveling = false;
     float timer;
+
+    public HealthBarUI healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -172,6 +173,11 @@ public class T764 : Ally
             lazor.Initiate(start, targetV, target, damage, true, room);
             laserTimer = 0;
         }
+    }
+
+    public override void TakeDamage(int ow) {
+        base.TakeDamage(ow);
+        healthBar.SetState(health);
     }
 
     protected override void Die() {
