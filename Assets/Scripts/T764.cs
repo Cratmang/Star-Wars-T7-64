@@ -177,11 +177,22 @@ public class T764 : Ally
 
     public override void TakeDamage(int ow) {
         base.TakeDamage(ow);
-        healthBar.SetState(health);
+        if (health > 0) {
+            healthBar.SetState(health);
+        } else {
+            healthBar.SetState(0);
+        }
     }
 
     protected override void Die() {
         Debug.Log("Dead, you should be.");
     }
-
+    
+    public void RepairSelf(int heal) {
+        health += heal;
+        if (health > maxHealth) {
+            health = maxHealth;
+        }
+        healthBar.SetState(health);
+    }
 }

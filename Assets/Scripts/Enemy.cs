@@ -230,6 +230,7 @@ public class Enemy : MonoBehaviour {
 
         room.enemiesInRoom.Remove(this);
         gm.enemies.Remove(this);
+        gm.UpdateEnemyCounter();
         Destroy(gameObject);
     }
 

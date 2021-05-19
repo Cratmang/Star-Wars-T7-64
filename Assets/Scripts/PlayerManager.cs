@@ -85,6 +85,7 @@ public class PlayerManager : MonoBehaviour
         transform.position = tee7.room.cameraTransform.position;
         transform.rotation = tee7.room.cameraTransform.rotation;
         UpdateTurretCounter(0);
+        UpdateTurretCounter(1);
     }
 
     void UpdateTurretCounter(int i) {
@@ -219,7 +220,7 @@ public class PlayerManager : MonoBehaviour
         
         //Get cost of turret to craft
         switch (type) {
-            case 0:
+            case 0:// Scrap Turret
                 cost[0] = 0;
                 cost[1] = 4;
                 cost[2] = 2;
@@ -227,9 +228,21 @@ public class PlayerManager : MonoBehaviour
                 cost[4] = 0;
                 cost[5] = 0;
                 break;
-            case 1:
+            case 1:// Defence Turret
+                cost[0] = 0;
+                cost[1] = 6;
+                cost[2] = 4;
+                cost[3] = 2;
+                cost[4] = 1;
+                cost[5] = 6;
                 break;
-            case 2:
+            case 2:// JED1 Prototype Training Droid
+                cost[0] = 1;
+                cost[1] = 7;
+                cost[2] = 6;
+                cost[3] = 4;
+                cost[4] = 2;
+                cost[5] = 10;
                 break;
         }
 
@@ -291,6 +304,27 @@ public class PlayerManager : MonoBehaviour
 
         } else {
             // "Error = no Fuel Rods available"
+        }
+    }
+
+    public void RepairSelf(int what) {
+        int healAmount;
+        switch (what) {
+            case 1: // Repair with scrap - 1 scrap = 1 health
+                healAmount = 1;
+                break;
+            case 5: // Repair with ore - 1 ore = 3 health
+                healAmount = 3;
+                break;
+            default: // Repairs should not be possible with any other material
+                Debug.Log("Selected resource = cannot be used to heal");
+                return;
+        }
+
+        if (resourceCount[what] > 0 && tee7.health < tee7.maxHealth) {
+            resourceCount[what]--;
+            tee7.RepairSelf(healAmount);
+            resourceCounters[what].text = resourceCount[what].ToString();
         }
     }
 }

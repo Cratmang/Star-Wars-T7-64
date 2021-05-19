@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Room : MonoBehaviour
 {
@@ -13,8 +14,14 @@ public class Room : MonoBehaviour
     public Transform cameraTransform;
 
     public Transform[] sentryTransforms;
-    private List<GameObject> sentries = new List<GameObject>();
-    
+    private List<Sentry> sentries = new List<Sentry>();
+
+    public Image mapImage;
+    public Sprite[] mapSprite = new Sprite[3];
+    /* 0 = Normal
+     * 1 = Player here
+     * 2 = Enemies here
+     */
 
     public bool Equals(Room r) {
         if (roomID == r.roomID) {
@@ -29,13 +36,14 @@ public class Room : MonoBehaviour
     }
 
     public bool PlaceSentry(GameObject sen) {
-        if (sentries.Count >= sentryTransforms.Length) { //If my understanding of Array.IndexOf is correct, then it SHOULD return -1 if the index is full. But I could be wrong...
+        if (sentries.Count >= sentryTransforms.Length) { 
             return false;
         } else {
             int g = sentries.Count;
-            GameObject newSen = Instantiate(sen, sentryTransforms[g]);
-            newSen.GetComponent<Sentry>().Initiate(this);
+            Sentry newSen = Instantiate(sen, sentryTransforms[g]).GetComponent<Sentry>();
+            newSen.Initiate(this);
             sentries.Add(newSen);
+            alliesInRoom.Add(newSen);
             return true;
         }
     }

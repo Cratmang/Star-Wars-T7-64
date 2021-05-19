@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     //Enemy Spawn Rooms
     public Room hangarBay, mine;
     public HallB vent;
-    public bool mineSpawnActive, ventSpawnActive;
     public int mineSpawnWave, ventSpawnWave; // The waves at which the mine and vents will start spawning enemies.
 
     public Vault[] vaults = new Vault[3];
@@ -62,6 +61,7 @@ public class GameManager : MonoBehaviour
     string[] waves;
     public GameObject nextWaveCounter;
     Text nextWaveCounterText;
+    public Text waveCounter, enemiesRemainingCounter;
 
     private void Awake() {
         waves = waveInfoFile.text.Split('\n');
@@ -90,14 +90,14 @@ public class GameManager : MonoBehaviour
                     int spawnID = Random.Range(0, 3);
                     switch (spawnID) {
                         case 1:
-                            if (mineSpawnActive) { // Could probably replace this with (wave >= mineSpawnWave) if I have no intention of turning it back off.
+                            if (wave >= mineSpawnWave) { // Could probably replace this with (wave >= mineSpawnWave) if I have no intention of turning it back off.
                                 spawnRoom = mine;
                             } else {
                                 spawnID = 0;
                             }
                             break;
                         case 2:
-                            if (ventSpawnActive) {
+                            if (wave >= ventSpawnWave) {
                                 spawnRoom = vent;
                             } else {
                                 spawnID = 0;
@@ -142,7 +142,9 @@ public class GameManager : MonoBehaviour
                     nextWaveCounter.SetActive(false);
                     waveInProgress = true;
                     wave++;
+                    waveCounter.text = "Wave " + wave.ToString();
                     ParseWave();
+                    enemiesRemainingCounter.text = enemiesToSpawn.Count.ToString();
                     spawnTime = 0;
                 }
 
@@ -160,7 +162,6 @@ public class GameManager : MonoBehaviour
 
     void ParseWave() {
         string[] waveContentStrings = waves[wave - 1].Split(',');
-        int nubOEns = 0;
         for (int i = 0; i < waveContentStrings.Length; i += 2) {
 
             string enemyType = waveContentStrings[i].ToUpper();
@@ -179,10 +180,9 @@ public class GameManager : MonoBehaviour
                     //TO DO (lowest priority, but would be cool)
                     break;
                 default: // This should not happen ever, but just in case...
-                    //enemiesToSpawn.Add(battleDroid);
+                    enemiesToSpawn.Add(battleDroid);
                     break;
             }
-            nubOEns++;
 
             // The number immediately afterword should be the amount of time (in seconds) until the next enemy will spawn.
             if (i < waveContentStrings.Length - 1) {
@@ -190,9 +190,10 @@ public class GameManager : MonoBehaviour
                 float.TryParse(waveContentStrings[i + 1], out timeToNextEnemy);
                 waitTimes.Add(timeToNextEnemy);
             }
-
         }
+    }
 
-        Debug.Log(nubOEns);
+    public void UpdateEnemyCounter() {
+        enemiesRemainingCounter.text = (enemiesToSpawn.Count + enemies.Count).ToString();
     }
 }
