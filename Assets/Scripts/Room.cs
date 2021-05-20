@@ -19,8 +19,8 @@ public class Room : MonoBehaviour
     public Image mapImage;
     public Sprite[] mapSprite = new Sprite[3];
     /* 0 = Normal
-     * 1 = Player here
-     * 2 = Enemies here
+     * 1 = Enemies here
+     * 2 = Player here
      */
 
     public bool Equals(Room r) {
@@ -63,6 +63,18 @@ public class Room : MonoBehaviour
         } else {
             int i = Random.Range(0, alliesInRoom.Count);
             return alliesInRoom[i];
+        }
+    }
+
+    public bool playerHere;
+
+    private void Update() {
+        if (playerHere) {
+            mapImage.sprite = mapSprite[2];
+        } else if (enemiesInRoom.Count > 0) {
+            mapImage.sprite = mapSprite[1];
+        } else {
+            mapImage.sprite = mapSprite[0];
         }
     }
 }

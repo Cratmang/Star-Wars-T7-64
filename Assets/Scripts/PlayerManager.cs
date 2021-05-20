@@ -86,6 +86,7 @@ public class PlayerManager : MonoBehaviour
         transform.rotation = tee7.room.cameraTransform.rotation;
         UpdateTurretCounter(0);
         UpdateTurretCounter(1);
+        tee7.room.playerHere = true;
     }
 
     void UpdateTurretCounter(int i) {
@@ -175,17 +176,17 @@ public class PlayerManager : MonoBehaviour
                             //nextLocationIndex = passage.nextLocationIndex;
                             //SwitchPosition(nextLocationIndex);
 
-                            //In case I somehow make this mistake again, these statements set the POSITION, then the ROTATION of the camera.
-                            //  If they look the same, it's because a) they have the same number of characters, and b) your brain has enabled
-                            //  dyslexic mode.
+                            //Again, POSITION, then ROTATION.
                             transform.position = passage.nextRoom.cameraTransform.position;
                             transform.rotation = passage.nextRoom.cameraTransform.rotation;
 
-                            //Give Previous location and Next Location to T7-64
+                            //Remove T7-64 from the previous room, add him to the next room.
                             tee7.room.alliesInRoom.Remove(tee7);
+                            tee7.room.playerHere = false;
                             tee7.TravelTo(passage.nextRoom.roomID);
                             tee7.room = passage.nextRoom;
                             tee7.room.alliesInRoom.Add(tee7);
+                            tee7.room.playerHere = true;
 
                             //prevLocationIndex = nextLocationIndex;
                             LockInput();
