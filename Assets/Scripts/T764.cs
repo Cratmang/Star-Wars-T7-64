@@ -16,12 +16,18 @@ public class T764 : Ally
 
     public HealthBarUI healthBar;
 
+    SpriteRenderer sr;
+    public Sprite[] spriteSheet;
+    public int fireStartFrame, fireEndFrame;
+
     // Start is called before the first frame update
     void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
         transform.position = standHere[0].position;
         waypointTo = standHere[0].transform;
         waypointFro = standHere[0].transform;
+        laserTimer = laserRechargeTime;
     }
 
     // Update is called once per frame
@@ -41,6 +47,14 @@ public class T764 : Ally
 
         if (laserTimer < laserRechargeTime) {
             laserTimer += Time.deltaTime;
+
+            // Animate laser being fired, and reloading gun
+            if (laserTimer < laserRechargeTime) {
+                int laserFrame = Mathf.FloorToInt((laserTimer / laserRechargeTime) * (fireEndFrame - fireStartFrame)) + fireStartFrame;
+                sr.sprite = spriteSheet[laserFrame];
+            } else {
+                sr.sprite = spriteSheet[0]; //Reset to regular frame.
+            }
         }
     }
 

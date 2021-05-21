@@ -8754,6 +8754,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: AutoDrill
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 132aafc4444ba3447afd34cee3793f2b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7487702076113990204, guid: 132aafc4444ba3447afd34cee3793f2b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 132aafc4444ba3447afd34cee3793f2b, type: 3}
 --- !u!4 &738395270 stripped
@@ -21681,12 +21691,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5ce6018ac93128c4da40f6661b168bc1, type: 3}
+  m_Sprite: {fileID: 8813277093553755427, guid: 5ce6018ac93128c4da40f6661b168bc1,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -21700,7 +21711,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914773057}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.88, y: -12.4, z: 2.5199997}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -21762,6 +21773,24 @@ MonoBehaviour:
   travelTime: 0.5
   traveling: 0
   healthBar: {fileID: 374049172}
+  spriteSheet:
+  - {fileID: 8813277093553755427, guid: 5ce6018ac93128c4da40f6661b168bc1, type: 3}
+  - {fileID: -6867160160887932228, guid: 5ce6018ac93128c4da40f6661b168bc1, type: 3}
+  - {fileID: 1710204743130934996, guid: 5ce6018ac93128c4da40f6661b168bc1, type: 3}
+  - {fileID: 1714233067846781950, guid: 5ce6018ac93128c4da40f6661b168bc1, type: 3}
+  - {fileID: -3435238034561020442, guid: 5ce6018ac93128c4da40f6661b168bc1, type: 3}
+  - {fileID: -3435238034561020442, guid: 5ce6018ac93128c4da40f6661b168bc1, type: 3}
+  - {fileID: -3435238034561020442, guid: 5ce6018ac93128c4da40f6661b168bc1, type: 3}
+  - {fileID: -3435238034561020442, guid: 5ce6018ac93128c4da40f6661b168bc1, type: 3}
+  - {fileID: -3435238034561020442, guid: 5ce6018ac93128c4da40f6661b168bc1, type: 3}
+  - {fileID: -3435238034561020442, guid: 5ce6018ac93128c4da40f6661b168bc1, type: 3}
+  - {fileID: -3435238034561020442, guid: 5ce6018ac93128c4da40f6661b168bc1, type: 3}
+  - {fileID: -3435238034561020442, guid: 5ce6018ac93128c4da40f6661b168bc1, type: 3}
+  - {fileID: 1592985054871569360, guid: 5ce6018ac93128c4da40f6661b168bc1, type: 3}
+  - {fileID: 6180813638922270727, guid: 5ce6018ac93128c4da40f6661b168bc1, type: 3}
+  - {fileID: -6030039592566478124, guid: 5ce6018ac93128c4da40f6661b168bc1, type: 3}
+  fireStartFrame: 1
+  fireEndFrame: 13
 --- !u!114 &1914773061
 MonoBehaviour:
   m_ObjectHideFlags: 0
