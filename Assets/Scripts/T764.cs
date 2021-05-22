@@ -19,6 +19,7 @@ public class T764 : Ally
     SpriteRenderer sr;
     public Sprite[] spriteSheet;
     public int fireStartFrame, fireEndFrame;
+    bool dead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -31,45 +32,50 @@ public class T764 : Ally
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (traveling) {
-            timer += Time.deltaTime;
-            transform.position = Vector3.Lerp(waypointFro.position, waypointTo.position, (timer/travelTime));
-            
-            if (timer >= travelTime) {
-                transform.position = waypointTo.position;
-                traveling = false;
-                waypointFro = waypointTo;
-                pm.UnlockInput();
+    void Update() {
+        if (!dead) {
+            if (traveling) {
+                timer += Time.deltaTime;
+                transform.position = Vector3.Lerp(waypointFro.position, waypointTo.position, (timer / travelTime));
+
+                if (timer >= travelTime) {
+                    transform.position = waypointTo.position;
+                    traveling = false;
+                    waypointFro = waypointTo;
+                    pm.UnlockInput();
+                }
             }
-        }
 
-        if (laserTimer < laserRechargeTime) {
-            laserTimer += Time.deltaTime;
-
-            // Animate laser being fired, and reloading gun
             if (laserTimer < laserRechargeTime) {
-                int laserFrame = Mathf.FloorToInt((laserTimer / laserRechargeTime) * (fireEndFrame - fireStartFrame)) + fireStartFrame;
-                sr.sprite = spriteSheet[laserFrame];
-            } else {
-                sr.sprite = spriteSheet[0]; //Reset to regular frame.
+                laserTimer += Time.deltaTime;
+
+                // Animate laser being fired, and reloading gun
+                if (laserTimer < laserRechargeTime) {
+                    int laserFrame = Mathf.FloorToInt((laserTimer / laserRechargeTime) * (fireEndFrame - fireStartFrame)) + fireStartFrame;
+                    sr.sprite = spriteSheet[laserFrame];
+                } else {
+                    sr.sprite = spriteSheet[0]; //Reset to regular frame.
+                }
+            }
+
+        } else {
+            timer += Time.deltaTime;
+            Debug.Log(timer);
+            if (timer >= 3) {
+                GameObject.Find("Game Manager").GetComponent<GameManager>().GameOver();
             }
         }
     }
 
-
     // Code to travel between rooms. I may need to rewrite this code entirely to account for the Room object.
-    //   Possible solution: include a refrence to the next room in Door.cs.
-    //    Gonna go to bed now though, because it is 23:54 (almost midnight!) at the time I'm writing, and I want
-    //    to have some semblance of a sleep schedule.
-    public void TravelTo (int newRoom){
+    //   I was gonna rewrite this code at some point to better account for the Room object, but I never did. ¯\_('>')_/¯
+    public void TravelTo(int newRoom) {
         traveling = true;
         timer = 0;
         //Teleport straight to the new room, determine which direction you're entering from based on the old room.
         switch (newRoom) {
             case 0:// Command Room
-                //There's only one way into the Command Room!
+                   //There's only one way into the Command Room!
                 waypointFro = travelWaypoints[0];
                 break;
 
@@ -116,7 +122,7 @@ public class T764 : Ally
                 break;
 
             case 3:// Mine
-                //There's only one way into the Mine!
+                   //There's only one way into the Mine!
                 waypointFro = travelWaypoints[9];
                 break;
 
@@ -151,7 +157,7 @@ public class T764 : Ally
                 break;
 
             case 6:// Hangar Bay
-                //There's only one way into the Hangar Bay! That said, I'm not sure if I will allow the player to enter the Hangar Bay.
+                   //There's only one way into the Hangar Bay! That said, I'm not sure if I will allow the player to enter the Hangar Bay.
                 waypointFro = travelWaypoints[14];
                 break;
 
@@ -176,7 +182,6 @@ public class T764 : Ally
                 break;
         }
         waypointTo = standHere[newRoom];
-        //roomID = newRoom;
     }
 
     //TO-DO: Add recharge time on laser attack.
@@ -199,7 +204,11 @@ public class T764 : Ally
     }
 
     protected override void Die() {
-        Debug.Log("Dead, you should be.");
+        if (!dead) {
+            dead = true;
+            timer = 0;
+            sr.sprite = spriteSheet[14]; // Unless I'm mistaken, This is the index for the DED sprite.
+        }
     }
     
     public void RepairSelf(int heal) {

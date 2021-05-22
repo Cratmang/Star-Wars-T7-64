@@ -33,12 +33,10 @@ public class TitleScreen : MonoBehaviour
             if (timer >= TCEndTime) {
                 timer = 0;
             }
+
         } else {
             textCrawl.transform.localPosition = new Vector2(0, TCStart);
             textCrawl.color = textColor;
         }
     }
-
-    
-
 }

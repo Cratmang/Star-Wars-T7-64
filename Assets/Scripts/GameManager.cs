@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     //Spawns and manages enemies
-
-    
 
 
     //Enemy Spawn Rooms
@@ -63,13 +62,14 @@ public class GameManager : MonoBehaviour
     Text nextWaveCounterText;
     public Text waveCounter, enemiesRemainingCounter;
 
+
     private void Awake() {
         waves = waveInfoFile.text.Split('\n');
         timer = timeBetweenWaves;
         waveInProgress = false;
         nextWaveCounterText = nextWaveCounter.GetComponentInChildren<Text>();
     }
-    //TO DO: Wave counter UI, Time Until Next Wave UI
+    
 
     // Update is called once per frame
     void Update()
@@ -147,7 +147,6 @@ public class GameManager : MonoBehaviour
                     enemiesRemainingCounter.text = enemiesToSpawn.Count.ToString();
                     spawnTime = 0;
                 }
-
             }
         }
     }
@@ -195,5 +194,14 @@ public class GameManager : MonoBehaviour
 
     public void UpdateEnemyCounter() {
         enemiesRemainingCounter.text = (enemiesToSpawn.Count + enemies.Count).ToString();
+    }
+
+    public int gameOverSceneIndex;
+    public void GameOver() {
+        DontDestroyOnLoad(gameObject);
+        SceneManager.LoadScene(gameOverSceneIndex);
+        Text highScoreText = GameObject.Find("HighScoreTxt").GetComponent<Text>();
+        highScoreText.text = wave.ToString();
+        Destroy(gameObject);
     }
 }

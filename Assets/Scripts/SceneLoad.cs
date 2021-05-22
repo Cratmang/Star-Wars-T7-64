@@ -5,17 +5,9 @@ using UnityEngine;
 
 public class SceneLoad : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
+    public int nextScene = 1; //This is the scene for the main game, which is most likely the only scene that this script will use.
 
     public void StartGame() {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(nextScene);
     }
-
-    public int finalScore;
-
-
 }

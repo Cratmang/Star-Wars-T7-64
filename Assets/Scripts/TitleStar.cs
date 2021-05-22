@@ -9,6 +9,7 @@ public class TitleStar : MonoBehaviour
     private void Update() {
         transform.position += speed * Time.deltaTime;
     }
+
     private void OnTriggerEnter(Collider other) {
         Destroy(gameObject);
     }
