@@ -43,8 +43,8 @@ public class GameManager : MonoBehaviour
     //Spawn Timer
     // Spawn enemies over time. Gonna replace this with a Wave-based system.
     public GameObject battleDroid, 
-                      bdCommander/*, 
-                      superDroid, 
+                      bdCommander, 
+                      superDroid/*, 
                       droideka*/;
     public float spawnTime;
     float timer = 0;

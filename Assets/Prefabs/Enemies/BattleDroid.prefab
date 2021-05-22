@@ -137,8 +137,10 @@ MonoBehaviour:
   - {fileID: 4760923593130850965, guid: f1df9cb00be425f41a0d21b2ca514fb5, type: 3}
   - {fileID: 4760923593130850965, guid: f1df9cb00be425f41a0d21b2ca514fb5, type: 3}
   - {fileID: 4760923593130850965, guid: f1df9cb00be425f41a0d21b2ca514fb5, type: 3}
+  - {fileID: 6067783209499355784, guid: f734cd6ba1cba4e46a1c84447dc788a4, type: 3}
+  - {fileID: 6067783209499355784, guid: f734cd6ba1cba4e46a1c84447dc788a4, type: 3}
   minDrops: 1
-  maxDrops: 3
+  maxDrops: 4
   health: 2
   maxHealth: 2
   waypoints: []
