@@ -19,7 +19,7 @@ public class Sentry : Ally
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         if (laserTimer < laserRechargeTime) {
             laserTimer += Time.deltaTime;
@@ -39,5 +39,10 @@ public class Sentry : Ally
                 lazor.Initiate(start, targetV, target.gameObject, damage, true, room);        
             }
         }    
+    }
+
+    protected override void Die() {
+        room.sentries.Remove(this);
+        base.Die();
     }
 }

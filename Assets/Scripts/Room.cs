@@ -14,7 +14,7 @@ public class Room : MonoBehaviour
     public Transform cameraTransform;
 
     public Transform[] sentryTransforms;
-    private List<Sentry> sentries = new List<Sentry>();
+    public List<Sentry> sentries = new List<Sentry>();
 
     public Image mapImage;
     public Sprite[] mapSprite = new Sprite[3];
@@ -36,6 +36,7 @@ public class Room : MonoBehaviour
     }
 
     public bool PlaceSentry(GameObject sen) {
+        
         if (sentries.Count >= sentryTransforms.Length) { 
             return false;
         } else {

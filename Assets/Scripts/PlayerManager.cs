@@ -85,6 +85,7 @@ public class PlayerManager : MonoBehaviour
         transform.rotation = tee7.room.cameraTransform.rotation;
         UpdateTurretCounter(0);
         UpdateTurretCounter(1);
+        UpdateTurretCounter(2);
         tee7.room.playerHere = true;
     }
 
@@ -228,16 +229,16 @@ public class PlayerManager : MonoBehaviour
                 break;
             case 1:// Defence Turret
                 cost[0] = 0;
-                cost[1] = 6;
-                cost[2] = 4;
+                cost[1] = 10;
+                cost[2] = 6;
                 cost[3] = 2;
                 cost[4] = 1;
                 cost[5] = 6;
                 break;
             case 2:// JED1 Prototype Training Droid
                 cost[0] = 1;
-                cost[1] = 7;
-                cost[2] = 6;
+                cost[1] = 15;
+                cost[2] = 10;
                 cost[3] = 4;
                 cost[4] = 2;
                 cost[5] = 10;

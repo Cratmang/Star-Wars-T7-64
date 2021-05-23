@@ -25,7 +25,7 @@ public class AutoMiner : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= digTime) {
                 int d = Random.Range(0, drops.Length);
-                Resource loot = Instantiate(drops[d], spawnPoint.transform.position, transform.rotation).GetComponent<Resource>();
+                Resource loot = Instantiate(drops[d], spawnPoint.transform.position, spawnPoint.transform.rotation).GetComponent<Resource>();
                 loot.Initiate();
                 digs--;
                 timer = 0;
