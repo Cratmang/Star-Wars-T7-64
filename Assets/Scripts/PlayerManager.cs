@@ -37,7 +37,6 @@ public class PlayerManager : MonoBehaviour
     public Texture2D cursorInteract;
     public Texture2D cursorShoot;
     public Texture2D cursorMine;
-    public Texture2D cursorCraft;
     public Texture2D cursorLocked;
 
     private CursorMode cursorMode = CursorMode.Auto;
@@ -153,15 +152,13 @@ public class PlayerManager : MonoBehaviour
 
                     OreVein ov = hit.transform.gameObject.GetComponent<OreVein>();
                     if (ov) {
-                        // TO-DO: Draw mining cursor
-                        Cursor.SetCursor(cursorGoTo, hotSpot, cursorMode);
+                        Cursor.SetCursor(cursorMine, hotSpot, cursorMode);
                         f = true;
                     }
 
                     Terminal tem = hit.transform.gameObject.GetComponent<Terminal>();
                     if (tem) {
-                        // TO-DO: Draw terminal interact cursor
-                        Cursor.SetCursor(cursorGoTo, hotSpot, cursorMode);
+                        Cursor.SetCursor(cursorInteract, hotSpot, cursorMode);
                         f = true;
                     }
                 }

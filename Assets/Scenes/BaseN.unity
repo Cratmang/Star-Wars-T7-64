@@ -11533,13 +11533,13 @@ MonoBehaviour:
   prevLocationIndex: 0
   nextLocationIndex: 0
   transforms: []
-  cursorNormal: {fileID: 2800000, guid: 5a888c676e9f8f442ac2071d96ab93b7, type: 3}
-  cursorGoTo: {fileID: 2800000, guid: b0f155cde73a62946b15d2c79ab60b0e, type: 3}
-  cursorInteract: {fileID: 0}
-  cursorShoot: {fileID: 2800000, guid: ccf448bf01733434d9d20fe0cd563335, type: 3}
-  cursorMine: {fileID: 0}
+  cursorNormal: {fileID: 2800000, guid: 5d779a9d60c4e564889159e025a1322c, type: 3}
+  cursorGoTo: {fileID: 2800000, guid: 1e6a152de4f0841478b591036d168c8c, type: 3}
+  cursorInteract: {fileID: 2800000, guid: 7ba8ea073b8a8db4a9a6c2fba8459971, type: 3}
+  cursorShoot: {fileID: 2800000, guid: 155e3bc82c8b07845b42808ea84ebc57, type: 3}
+  cursorMine: {fileID: 2800000, guid: 0f2db83ba93c9264c90dd0086b3fe891, type: 3}
   cursorCraft: {fileID: 0}
-  cursorLocked: {fileID: 2800000, guid: 7988c5ac05055dd4bb481400287cef95, type: 3}
+  cursorLocked: {fileID: 2800000, guid: bb0628520ab64e14c814596cb88cdd8b, type: 3}
   resourceCounters:
   - {fileID: 2024199711}
   - {fileID: 1306352531}
