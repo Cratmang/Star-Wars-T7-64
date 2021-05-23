@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
     public float spawnTime;
     float timer = 0;
 
+    public Image mapVent, mapTunnel;
+
     public List<Enemy> enemies;
     List<GameObject> enemiesToSpawn = new List<GameObject>();
     List<float> waitTimes = new List<float>();
@@ -76,6 +78,8 @@ public class GameManager : MonoBehaviour
     {
         if (vaults[0].looted && vaults[1].looted && vaults[2].looted) {
             // GAME OVER!
+            GameOver();
+
         } else {
 
             if (waveInProgress) {
@@ -131,6 +135,19 @@ public class GameManager : MonoBehaviour
                     timer = timeBetweenWaves;
                     nextWaveCounterText.text = Mathf.Ceil(timer).ToString();
                     nextWaveCounter.SetActive(true);
+
+                    if (wave >= waves.Length) {
+                        SceneManager.LoadScene(3); //This should be the "You Win!" screen.
+                    }
+
+                    //Show mine tunnel flashing on map to indicate that enemies can spawn there
+                    if (wave + 1 >= mineSpawnWave) {
+                        mapTunnel.gameObject.SetActive(true);
+                    }
+                    //Show vent flashing on map to show the same thing as above
+                    if (wave + 1 >= ventSpawnWave) {
+                        mapVent.GetComponent<Animator>().SetBool("Vent", true);
+                    }
                 }
 
             } else {
@@ -170,13 +187,12 @@ public class GameManager : MonoBehaviour
                     break;
                 case "B":// Battle Droid Commander
                     enemiesToSpawn.Add(bdCommander);
-                    //TO DO
                     break;
                 case "C":// Super Battle Droid
-                    //TO DO
+                    enemiesToSpawn.Add(superDroid);
                     break;
                 case "D":// Droideka
-                    //TO DO (lowest priority, but would be cool)
+                    //enemiesToSpawn.Add(droideka); TO DO (lowest priority, but would be cool)
                     break;
                 default: // This should not happen ever, but just in case...
                     enemiesToSpawn.Add(battleDroid);

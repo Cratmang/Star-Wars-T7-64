@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce14df8fd9181ab42bdef373eb606b6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
-  maxHealth: 20
+  health: 15
+  maxHealth: 15
   damage: 1
   laserPrefab: {fileID: 7944663641039822433, guid: 4c7082da95606584188714f678c66591,
     type: 3}

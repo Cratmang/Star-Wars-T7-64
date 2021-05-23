@@ -1030,7 +1030,7 @@ RectTransform:
   - {fileID: 758675335}
   - {fileID: 672478456}
   m_Father: {fileID: 1579706036}
-  m_RootOrder: 9
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -2305,7 +2305,7 @@ RectTransform:
   - {fileID: 1873555486}
   - {fileID: 597002475}
   m_Father: {fileID: 1579706036}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6973,7 +6973,7 @@ RectTransform:
   m_Children:
   - {fileID: 374049171}
   m_Father: {fileID: 1579706036}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -7187,7 +7187,7 @@ RectTransform:
   - {fileID: 480772378}
   - {fileID: 1684092117}
   m_Father: {fileID: 1579706036}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9311,7 +9311,7 @@ RectTransform:
   m_Children:
   - {fileID: 189362478}
   m_Father: {fileID: 1579706036}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -10346,6 +10346,8 @@ MonoBehaviour:
   superDroid: {fileID: 7539705454088771512, guid: de20e09004f355749ac899f637fdb43d,
     type: 3}
   spawnTime: 1
+  mapVent: {fileID: 1776264166}
+  mapTunnel: {fileID: 1794834697}
   enemies: []
   wave: 0
   timeBetweenWaves: 15
@@ -18058,13 +18060,13 @@ RectTransform:
   - {fileID: 820778532}
   - {fileID: 1069281960}
   - {fileID: 1841184753}
+  - {fileID: 96769624}
   - {fileID: 642317753}
   - {fileID: 611458275}
   - {fileID: 782875283}
   - {fileID: 1794415043}
   - {fileID: 1767412102}
   - {fileID: 198369391}
-  - {fileID: 96769624}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20023,7 +20025,7 @@ RectTransform:
   - {fileID: 652965286}
   - {fileID: 1021257380}
   m_Father: {fileID: 1579706036}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -20078,6 +20080,7 @@ GameObject:
   - component: {fileID: 1776264165}
   - component: {fileID: 1776264167}
   - component: {fileID: 1776264166}
+  - component: {fileID: 1776264168}
   m_Layer: 5
   m_Name: MapVent
   m_TagString: Untagged
@@ -20142,6 +20145,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1776264164}
   m_CullTransparentMesh: 0
+--- !u!95 &1776264168
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776264164}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 701596fb58db4df4b9c43a410c0209cc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1781564695
 GameObject:
   m_ObjectHideFlags: 0
@@ -20365,7 +20387,7 @@ RectTransform:
   - {fileID: 1776264165}
   - {fileID: 1794834696}
   m_Father: {fileID: 1579706036}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -20420,13 +20442,14 @@ GameObject:
   - component: {fileID: 1794834696}
   - component: {fileID: 1794834698}
   - component: {fileID: 1794834697}
+  - component: {fileID: 1794834699}
   m_Layer: 5
   m_Name: MapMineTunnel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1794834696
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20484,6 +20507,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794834695}
   m_CullTransparentMesh: 0
+--- !u!95 &1794834699
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794834695}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d7dd17eb847c896438c56aa21cd8aab1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1802859752
 GameObject:
   m_ObjectHideFlags: 0
