@@ -2287,7 +2287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &198369391
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3671,7 +3671,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 6}
+  m_AnchoredPosition: {x: 0, y: 121}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &338299573
@@ -4657,7 +4657,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 70}
+  m_AnchoredPosition: {x: 0, y: -168}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &412731101
@@ -5463,7 +5463,7 @@ MonoBehaviour:
   - {fileID: 1212478582}
   - {fileID: 804271729}
   - {fileID: 645925124}
-  sentries: []
+  sentries: 0
   mapImage: {fileID: 469923128}
   mapSprite:
   - {fileID: -1382599404536372767, guid: 9841359214bb4a449a37684fb229344a, type: 3}
@@ -6841,7 +6841,7 @@ MonoBehaviour:
   - {fileID: 1310515860}
   - {fileID: 100271444}
   - {fileID: 1551740628}
-  sentries: []
+  sentries: 0
   mapImage: {fileID: 1267238245}
   mapSprite:
   - {fileID: -7516791614127822498, guid: 9841359214bb4a449a37684fb229344a, type: 3}
@@ -7538,7 +7538,7 @@ MonoBehaviour:
   - {fileID: 2084064274}
   - {fileID: 872024416}
   - {fileID: 670638838}
-  sentries: []
+  sentries: 0
   mapImage: {fileID: 1577090071}
   mapSprite:
   - {fileID: -4568697809530194781, guid: 9841359214bb4a449a37684fb229344a, type: 3}
@@ -7950,7 +7950,7 @@ MonoBehaviour:
   - {fileID: 764651058}
   - {fileID: 1291921816}
   - {fileID: 69861162}
-  sentries: []
+  sentries: 0
   mapImage: {fileID: 1922581220}
   mapSprite:
   - {fileID: 1353535977621239276, guid: 9841359214bb4a449a37684fb229344a, type: 3}
@@ -10552,7 +10552,7 @@ MonoBehaviour:
   - {fileID: 1190057291}
   - {fileID: 905387796}
   - {fileID: 1972212076}
-  sentries: []
+  sentries: 0
   mapImage: {fileID: 477930160}
   mapSprite:
   - {fileID: -2754663757602625610, guid: 9841359214bb4a449a37684fb229344a, type: 3}
@@ -11643,7 +11643,7 @@ MonoBehaviour:
   - {fileID: 491251988}
   - {fileID: 438313275}
   - {fileID: 1272923140}
-  sentries: []
+  sentries: 0
   mapImage: {fileID: 1728447435}
   mapSprite:
   - {fileID: -2411617240929303042, guid: 9841359214bb4a449a37684fb229344a, type: 3}
@@ -12345,7 +12345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 74}
+  m_AnchoredPosition: {x: 0, y: -164}
   m_SizeDelta: {x: 113, y: 113}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &986412281
@@ -12492,7 +12492,7 @@ MonoBehaviour:
   - {fileID: 1079310692}
   - {fileID: 1670523123}
   - {fileID: 392150494}
-  sentries: []
+  sentries: 0
   mapImage: {fileID: 1718695276}
   mapSprite:
   - {fileID: 6732742066884364779, guid: 9841359214bb4a449a37684fb229344a, type: 3}
@@ -13942,7 +13942,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 180, y: 6}
+  m_AnchoredPosition: {x: 180, y: 121}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1206217104
@@ -14097,7 +14097,7 @@ MonoBehaviour:
   - {fileID: 237468995}
   - {fileID: 924935686}
   - {fileID: 291645403}
-  sentries: []
+  sentries: 0
   mapImage: {fileID: 1820951805}
   mapSprite:
   - {fileID: -9024062157296624422, guid: 9841359214bb4a449a37684fb229344a, type: 3}
@@ -14467,7 +14467,7 @@ MonoBehaviour:
   - {fileID: 806081610}
   - {fileID: 39148243}
   - {fileID: 714004059}
-  sentries: []
+  sentries: 0
   mapImage: {fileID: 1584706667}
   mapSprite:
   - {fileID: 7265655196937639400, guid: 9841359214bb4a449a37684fb229344a, type: 3}
@@ -17404,7 +17404,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 74}
+  m_AnchoredPosition: {x: 0, y: -164}
   m_SizeDelta: {x: 80, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1441505990
@@ -21409,7 +21409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -180, y: 6}
+  m_AnchoredPosition: {x: -180, y: 121}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1788820770
@@ -25572,7 +25572,7 @@ MonoBehaviour:
   pathway: []
   cameraTransform: {fileID: 687619065}
   sentryTransforms: []
-  sentries: []
+  sentries: 0
   mapImage: {fileID: 1349565693}
   mapSprite:
   - {fileID: 645411862609229670, guid: 9841359214bb4a449a37684fb229344a, type: 3}

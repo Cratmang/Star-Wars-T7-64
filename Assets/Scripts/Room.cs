@@ -14,7 +14,7 @@ public class Room : MonoBehaviour
     public Transform cameraTransform;
 
     public Transform[] sentryTransforms;
-    public List<Sentry> sentries = new List<Sentry>();
+    public int sentries = 0;
 
     public Image mapImage;
     public Sprite[] mapSprite = new Sprite[3];
@@ -37,13 +37,20 @@ public class Room : MonoBehaviour
 
     public bool PlaceSentry(GameObject sen) {
         
-        if (sentries.Count >= sentryTransforms.Length) { 
+        if (sentries >= sentryTransforms.Length) { 
             return false;
         } else {
-            int g = sentries.Count;
+            int g = 0;
+            while (sentryTransforms[g].childCount != 0) {
+                if (g >= sentryTransforms.Length) {
+                    return false; //We shouldn't get here, but just in case...
+                } else {
+                    g++;
+                }
+            }
             Sentry newSen = Instantiate(sen, sentryTransforms[g]).GetComponent<Sentry>();
             newSen.Initiate(this);
-            sentries.Add(newSen);
+            sentries++;
             alliesInRoom.Add(newSen);
             return true;
         }

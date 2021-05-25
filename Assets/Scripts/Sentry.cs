@@ -42,7 +42,7 @@ public class Sentry : Ally
     }
 
     protected override void Die() {
-        room.sentries.Remove(this);
+        room.sentries--;
         base.Die();
     }
 }
