@@ -2287,7 +2287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &198369391
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10944,6 +10944,8 @@ MonoBehaviour:
   bdCommander: {fileID: 470173778048256248, guid: 4fd8c169694e03a4b89471ef610139ef,
     type: 3}
   superDroid: {fileID: 7539705454088771512, guid: de20e09004f355749ac899f637fdb43d,
+    type: 3}
+  droideka: {fileID: 1184595072335789614, guid: 3065d4530d2d8e64a88aa2c51e4d8aa1,
     type: 3}
   spawnTime: 1
   mapVent: {fileID: 1776264166}

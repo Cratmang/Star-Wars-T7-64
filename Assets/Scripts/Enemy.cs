@@ -41,9 +41,9 @@ public class Enemy : MonoBehaviour {
      */
 
     public int targetVault;
-    bool hasLoot;
+    protected bool hasLoot;
     public Transform lootHoldTransform;
-    GameObject loot;
+    protected GameObject loot;
     
 
     void Awake()
@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour {
         return distance;
     }
 
-    public void Initiate(Room spawnRoom, GameManager gm, int sID)
+    public virtual void Initiate(Room spawnRoom, GameManager gm, int sID)
     {
         this.gm = gm;
         lastWaypointSwitchTime = Time.time;
@@ -95,12 +95,6 @@ public class Enemy : MonoBehaviour {
 
         if (gameObject.transform.position.Equals(endPosition))
         {
-            /*int p;
-            if (escaping) {
-                p = currentWaypoint - 1;
-            } else {
-                p = currentWaypoint + 1;
-            }*/
 
             if (currentWaypoint < room.GetPathway(this).Count - 2  && !escaping) {
                 currentWaypoint++;
@@ -154,7 +148,6 @@ public class Enemy : MonoBehaviour {
                         escaping = true;
                         currentWaypoint = room.GetPathway(this).Count-1;
                     }
-                    //Destroy(gameObject);
                 }
             }
 
@@ -164,23 +157,9 @@ public class Enemy : MonoBehaviour {
             } else {
                 endPosition = room.GetPathway(this)[currentWaypoint+1].transform.position;
             }
-            //endPosition = room.GetPathway(this)[p].transform.position;
             lastWaypointSwitchTime = Time.time;
 
         }
-
-        //Rotate/Point towards next waypoint
-        //1
-        //Vector3 newStartPosition = waypoints[currentWaypoint].transform.position;
-        //Vector3 newEndPosition = waypoints[currentWaypoint + 1].transform.position;
-        //Vector3 newDirection = (newEndPosition - newStartPosition);
-        //2
-        //float x = newDirection.x;
-        //float y = newDirection.y;
-        //float rotationAngle = Mathf.Atan2(y, x) * 180 / Mathf.PI;
-        //3
-        //GameObject sprite = (GameObject) gameObject.transform.FindChild("Sprite").gameObject;
-        //sprite.transform.rotation = Quaternion.AngleAxis(rotationAngle, Vector3.forward);
 
         // Attack!
         Ally target = room.TargetAlly();
@@ -199,14 +178,10 @@ public class Enemy : MonoBehaviour {
         } else {
             attackTimer = 0;
         }
-
-
-        
-        
     }
 
 
-    public void TakeDamage(int ow) {
+    public virtual void TakeDamage(int ow) {
         health -= ow;
         if (health <= 0) {
             Die();
@@ -214,7 +189,7 @@ public class Enemy : MonoBehaviour {
     }
 
 
-    protected void Die() {
+    protected virtual void Die() {
         int a = (int) Random.Range(minDrops, maxDrops+1);
         Vector3 lootSpawn = transform.position + new Vector3(0, 1, 0);
 

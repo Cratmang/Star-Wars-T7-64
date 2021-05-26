@@ -44,8 +44,8 @@ public class GameManager : MonoBehaviour
     // Spawn enemies over time. Gonna replace this with a Wave-based system.
     public GameObject battleDroid, 
                       bdCommander, 
-                      superDroid/*, 
-                      droideka*/;
+                      superDroid, 
+                      droideka;
     public float spawnTime;
     float timer = 0;
 
@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour
                     enemiesToSpawn.Add(superDroid);
                     break;
                 case "D":// Droideka
-                    //enemiesToSpawn.Add(droideka); TO DO (lowest priority, but would be cool)
+                    enemiesToSpawn.Add(droideka);
                     break;
                 default: // This should not happen ever, but just in case...
                     enemiesToSpawn.Add(battleDroid);
